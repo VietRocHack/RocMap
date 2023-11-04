@@ -1,11 +1,13 @@
 [
     {
+        "id": "10-7",
         "startId": "10",
         "endId": "7",
         "image": "10-7.png",
         "distance": 10
     },
     {
+        "id": "7-10",
         "startId": "7",
         "endId": "10",
         "image": "7-10.png",
