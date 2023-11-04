@@ -1,0 +1,51 @@
+[
+    {
+        "id": "1",
+        "isDoor": false
+    },
+    {
+        "id": "2",
+        "isDoor": true,
+        "hallId": "4"
+    },
+    {
+        "id": "3",
+        "isDoor": true,
+        "hallId": "5"
+    },
+    {
+        "id": "4",
+        "isDoor": false
+    },
+    {
+        "id": "5",
+        "isDoor": false
+    },
+    {
+        "id": "6",
+        "isDoor": false
+    },
+    {
+        "id": "7",
+        "isDoor": true,
+        "hallId": "2"
+    },
+    {
+        "id": "8",
+        "isDoor": true,
+        "hallId": "3"
+    },
+    {
+        "id": "9",
+        "isDoor": false
+    },
+    {
+        "id": "10",
+        "isDoor": true,
+        "hallId": "1"
+    },
+    {
+        "id": "11",
+        "isDoor": false
+    }
+]
