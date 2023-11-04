@@ -25,7 +25,7 @@ def load_data(data_dir):
     return (graph, edges_dict)
 
 
-def find_shortest_path(start_id, end_id, graph, edges_dict, prefer_inside):
+def find_shortest_path(start_id, end_id, graph, edges_dict, weather):
     heap = []
 
     for edge_id in graph[start_id]:

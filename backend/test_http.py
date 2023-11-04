@@ -8,7 +8,7 @@ def test_valid():
         Mock(
             get_json=Mock(
                 return_value={
-                    "startId": "17",
+                    "startId": "10",
                     "endId": "12",
                 }
             )
@@ -16,5 +16,7 @@ def test_valid():
     )
 
     print(path)
+    for p in path:
+        print(p["image"])
 
     assert len(path) is None
