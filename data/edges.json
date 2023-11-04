@@ -309,7 +309,7 @@
         "startId": "13",
         "endId": "20",
         "image": "13-20.png",
-        "distance": 10
+        "distance": 20
     },
     {
         "id": "14-13",
@@ -326,7 +326,7 @@
         "endId": "15",
         "image": "14-15.png",
         "textDescription": "Go through the door down the stairs, then take the right until reaching the intersection.",
-        "distance": 10
+        "distance": 5
     },
     {
         "id": "15-14",
@@ -335,7 +335,7 @@
         "endId": "14",
         "image": "15-14.png",
         "textDescription": "Facing the wall, then take the right to go up the staircases then through the door.",
-        "distance": 10
+        "distance": 5
     },
     {
         "id": "15-16",
@@ -344,7 +344,7 @@
         "endId": "16",
         "image": "15-16.png",
         "textDescription": "Take the right then go straight through the door.",
-        "distance": 10
+        "distance": 5
     },
     {
         "id": "16-15",
@@ -353,15 +353,15 @@
         "endId": "15",
         "image": "16-15.png",
         "textDescription": "Go through the door and walk until reaching the intersection.",
-        "distance": 10
+        "distance": 5
     },
     {
-        "id": "16-19",
+        "id": "16-17",
         "isInside": true,
         "startId": "16",
         "endId": "17",
         "image": "16-17.png",
-        "distance": 10
+        "distance": 8
     },
     {
         "id": "17-16",
@@ -369,7 +369,7 @@
         "startId": "17",
         "endId": "16",
         "image": "17-16.png",
-        "distance": 10
+        "distance": 8
     },
     {
         "id": "17-18",
@@ -378,7 +378,7 @@
         "endId": "18",
         "image": "17-18.png",
         "textDescription": "Go straight all the way until reaching the intersection.",
-        "distance": 10
+        "distance": 8
     },
     {
         "id": "18-17",
@@ -387,7 +387,7 @@
         "endId": "17",
         "image": "18-17.png",
         "textDescription": "Facing the wall, then take the left, going straight until reaching the intersection.",
-        "distance": 10
+        "distance": 8
     },
     {
         "id": "18-19",
@@ -396,7 +396,7 @@
         "endId": "19",
         "image": "18-19.png",
         "textDescription": "Facing the wall, then take the right and go through the door.",
-        "distance": 10
+        "distance": 5
     },
     {
         "id": "19-18",
@@ -404,8 +404,8 @@
         "startId": "19",
         "endId": "18",
         "image": "19-18.png",
-        "textDescription": "Go throught the door and take a left, then go until reaching the intersection.",
-        "distance": 10
+        "textDescription": "Go through the door and take a left, then go until reaching the intersection.",
+        "distance": 5
     },
     {
         "id": "19-20",
@@ -421,7 +421,7 @@
         "startId": "20",
         "endId": "13",
         "image": "20-13.png",
-        "distance": 10
+        "distance": 20
     },
     {
         "id": "20-19",
