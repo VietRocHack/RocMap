@@ -12,9 +12,7 @@ def find_direction(request):
         Response object using `make_response`
         <https://flask.palletsprojects.com/en/1.1.x/api/#flask.make_response>.
     """
-    print(request.get_json())
     request_json = request.get_json(silent=True)
-    request_args = request.args
 
     start_id = request_json['startId']
     end_id = request_json['endId']
