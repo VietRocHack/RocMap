@@ -47,5 +47,61 @@
     {
         "id": "11",
         "isDoor": false
+    },
+
+    {
+        "id": "12",
+        "isDoor": true,
+        "isInside": true,
+        "hallId": "4"
+    },
+    {
+        "id": "13",
+        "isDoor": false,
+        "isInside": true
+    },
+    {
+        "id": "14",
+        "isDoor": true,
+        "isInside": true,
+        "hallId": "2"
+    },
+    {
+        "id": "15",
+        "isDoor": false,
+        "isInside": true
+    },
+    {
+        "id": "16",
+        "isDoor": false,
+        "isInside": true
+    },
+    {
+        "id": "17",
+        "isDoor": true,
+        "isInside": true,
+        "hallId": "1"
+    },
+    {
+        "id": "18",
+        "isDoor": false,
+        "isInside": true
+    },
+    {
+        "id": "19",
+        "isDoor": true,
+        "isInside": true,
+        "hallId": "3"
+    },
+    {
+        "id": "20",
+        "isDoor": false,
+        "isInside": true
+    },
+    {
+        "id": "21",
+        "isDoor": true,
+        "isInside": true,
+        "hallId": "5"
     }
 ]
