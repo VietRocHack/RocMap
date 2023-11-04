@@ -23,4 +23,13 @@ def find_direction(request):
 
     path = direction.find_shortest_path(start_id, end_id, graph, edges_dict)
 
-    return path
+    detailed_path = []
+    for edge_id in path[1]:
+        edge = edges_dict[edge_id]
+
+        detailed_path.append({
+            "dist": edge["distance"],
+            "image": edge["image"]
+        })
+
+    return detailed_path
