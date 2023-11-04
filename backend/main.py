@@ -22,16 +22,24 @@ def find_direction(request):
 
     path = direction.find_shortest_path(start_id, end_id, graph, edges_dict)
 
-    detailed_path = []
-    for edge_id in path[1]:
-        edge = edges_dict[edge_id]
-
-        detailed_path.append(
-            {"dist": edge["distance"], "image": get_image_url(edge["image"])}
-        )
+    detailed_path = get_detailed_path(path, edges_dict)
 
     return detailed_path
 
 
 def get_image_url(raw):
     return f"https://firebasestorage.googleapis.com/v0/b/rocmap.appspot.com/o/images%2F{raw}?alt=media"
+
+
+def get_detailed_path(path, edges_dict):
+    detailed_path = []
+    for edge_id in path[1]:
+        edge = edges_dict[edge_id]
+        edge_data = {}
+        edge_data["dist"] = edge["distance"]
+        edge_data["image"] = get_image_url(edge["image"])
+        if "textDescription" in edge:
+            edge_data["textDescription"] = edge["textDescription"]
+        detailed_path.append(edge_data)
+
+    return detailed_path
