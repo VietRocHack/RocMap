@@ -1,13 +1,21 @@
 import json
 from heapq import heapify, heappush, heappop
+import requests
 
 
 def load_data(data_dir):
-    nodes_file = open(f"{data_dir}/nodes.json")
-    edges_file = open(f"{data_dir}/edges.json")
+    # nodes_file = open(f"{data_dir}/nodes.json")
+    # edges_file = open(f"{data_dir}/edges.json")
 
-    nodes = json.load(nodes_file)
-    edges = json.load(edges_file)
+    nodes_response = requests.get(
+        "https://raw.githubusercontent.com/goodudetheboy/RocMap/data/data/nodes.json"
+    )
+
+    edges_response = requests.get(
+        "https://raw.githubusercontent.com/goodudetheboy/RocMap/data/data/edges.json"
+    )
+    nodes = nodes_response.json()
+    edges = edges_response.json()
 
     edges_dict = {}
 
@@ -25,7 +33,7 @@ def load_data(data_dir):
     return (graph, edges_dict)
 
 
-def find_shortest_path(start_id, end_id, graph, edges_dict, weather):
+def find_shortest_path(start_id, end_id, graph, edges_dict):
     heap = []
 
     for edge_id in graph[start_id]:
