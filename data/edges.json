@@ -4,28 +4,28 @@
         "startId": "1",
         "endId": "2",
         "image": "1-2.png",
-        "distance": 10
+        "distance": 14
     },
     {
         "id": "1-3",
         "startId": "1",
         "endId": "3",
         "image": "1-3.png",
-        "distance": 10
+        "distance": 14
     },
     {
         "id": "2-1",
         "startId": "2",
         "endId": "1",
         "image": "2-1.png",
-        "distance": 10
+        "distance": 14
     },
     {
         "id": "2-3",
         "startId": "2",
         "endId": "3",
         "image": "2-3.png",
-        "distance": 10
+        "distance": 20
     },
     {
         "id": "2-4",
@@ -39,28 +39,28 @@
         "startId": "2",
         "endId": "5",
         "image": "2-5.png",
-        "distance": 10
+        "distance": 14
     },
     {
         "id": "3-1",
         "startId": "3",
         "endId": "1",
         "image": "3-1.png",
-        "distance": 10
+        "distance": 14
     },
     {
         "id": "3-2",
         "startId": "3",
         "endId": "2",
         "image": "3-2.png",
-        "distance": 10
+        "distance": 20
     },
     {
         "id": "3-5",
         "startId": "3",
         "endId": "5",
         "image": "3-5.png",
-        "distance": 10
+        "distance": 14
     },
     {
         "id": "3-6",
@@ -95,14 +95,14 @@
         "startId": "5",
         "endId": "2",
         "image": "5-2.png",
-        "distance": 10
+        "distance": 14
     },
     {
         "id": "5-3",
         "startId": "5",
         "endId": "3",
         "image": "5-3.png",
-        "distance": 10
+        "distance": 14
     },
     {
         "id": "5-4",
@@ -123,14 +123,14 @@
         "startId": "5",
         "endId": "7",
         "image": "5-7.png",
-        "distance": 10
+        "distance": 14
     },
     {
         "id": "5-8",
         "startId": "5",
         "endId": "8",
         "image": "5-8.png",
-        "distance": 10
+        "distance": 14
     },
     {
         "id": "6-3",
@@ -165,14 +165,14 @@
         "startId": "7",
         "endId": "5",
         "image": "7-5.png",
-        "distance": 10
+        "distance": 14
     },
     {
         "id": "7-8",
         "startId": "7",
         "endId": "8",
         "image": "7-8.png",
-        "distance": 10
+        "distance": 20
     },
     {
         "id": "7-9",
@@ -186,14 +186,14 @@
         "startId": "7",
         "endId": "10",
         "image": "7-10.png",
-        "distance": 10
+        "distance": 14
     },
     {
         "id": "8-5",
         "startId": "8",
         "endId": "5",
         "image": "8-5.png",
-        "distance": 10
+        "distance": 14
     },
     {
         "id": "8-6",
@@ -207,14 +207,14 @@
         "startId": "8",
         "endId": "7",
         "image": "8-7.png",
-        "distance": 10
+        "distance": 20
     },
     {
         "id": "8-10",
         "startId": "8",
         "endId": "10",
         "image": "8-10.png",
-        "distance": 10
+        "distance": 14
     },
     {
         "id": "8-11",
@@ -241,14 +241,14 @@
         "startId": "10",
         "endId": "7",
         "image": "10-7.png",
-        "distance": 10
+        "distance": 14
     },
     {
         "id": "10-8",
         "startId": "10",
         "endId": "8",
         "image": "10-8.png",
-        "distance": 10
+        "distance": 14
     },
     {
         "id": "10-9",
