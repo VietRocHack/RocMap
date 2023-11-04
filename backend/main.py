@@ -1,6 +1,7 @@
 import functions_framework
 import direction
 
+
 @functions_framework.http
 def find_direction(request):
     """HTTP Cloud Function.
@@ -14,8 +15,8 @@ def find_direction(request):
     """
     request_json = request.get_json(silent=True)
 
-    start_id = request_json['startId']
-    end_id = request_json['endId']
+    start_id = request_json["startId"]
+    end_id = request_json["endId"]
 
     graph, edges_dict = direction.load_data("../data")
 
@@ -25,9 +26,12 @@ def find_direction(request):
     for edge_id in path[1]:
         edge = edges_dict[edge_id]
 
-        detailed_path.append({
-            "dist": edge["distance"],
-            "image": edge["image"]
-        })
+        detailed_path.append(
+            {"dist": edge["distance"], "image": get_image_url(edge["image"])}
+        )
 
     return detailed_path
+
+
+def get_image_url(raw):
+    return f"https://firebasestorage.googleapis.com/v0/b/rocmap.appspot.com/o/images%2F{raw}?alt=media"
