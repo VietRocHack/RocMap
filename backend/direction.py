@@ -3,8 +3,8 @@ from heapq import heapify, heappush, heappop
 
 
 def load_data(data_dir):
-    nodes_file = open(f'{data_dir}/nodes.json')
-    edges_file = open(f'{data_dir}/edges.json')
+    nodes_file = open(f"{data_dir}/nodes.json")
+    edges_file = open(f"{data_dir}/edges.json")
 
     nodes = json.load(nodes_file)
     edges = json.load(edges_file)
@@ -21,13 +21,12 @@ def load_data(data_dir):
         edge_id = edge["id"]
         graph[start_node].append(edge_id)
         edges_dict[edge["id"]] = edge
-    
+
     return (graph, edges_dict)
 
 
-def find_shortest_path(start_id, end_id, graph, edges_dict):
-    start_path = []
-    heap = [] 
+def find_shortest_path(start_id, end_id, graph, edges_dict, prefer_inside):
+    heap = []
 
     for edge_id in graph[start_id]:
         heap.append((edges_dict[edge_id]["distance"], [edge_id]))
@@ -47,9 +46,4 @@ def find_shortest_path(start_id, end_id, graph, edges_dict):
             new_path.insert(0, edge_id)
             heappush(heap, (dist + edges_dict[edge_id]["distance"], new_path))
 
-        
     return []
-
-    
-    
-
