@@ -42,6 +42,15 @@
         "distance": 14
     },
     {
+        "id": "2-12",
+        "isInside": true,
+        "startId": "2",
+        "endId": "12",
+        "image": "2-12.png",
+        "textDescription": "Go down the stairs.",
+        "distance": 10
+    },
+    {
         "id": "3-1",
         "startId": "3",
         "endId": "1",
@@ -67,6 +76,15 @@
         "startId": "3",
         "endId": "6",
         "image": "3-6.png",
+        "distance": 10
+    },
+    {
+        "id": "3-21",
+        "isInside": true,
+        "startId": "3",
+        "endId": "21",
+        "image": "3-21.png",
+        "textDescription": "Go down the stairs.",
         "distance": 10
     },
     {
@@ -189,6 +207,15 @@
         "distance": 14
     },
     {
+        "id": "7-14",
+        "isInside": true,
+        "startId": "7",
+        "endId": "14",
+        "image": "7-14.png",
+        "textDescription": "Take the left, go through the door and then down the stairs.",
+        "distance": 10
+    },
+    {
         "id": "8-5",
         "startId": "8",
         "endId": "5",
@@ -221,6 +248,15 @@
         "startId": "8",
         "endId": "11",
         "image": "8-11.png",
+        "distance": 10
+    },
+    {
+        "id": "8-19",
+        "isInside": true,
+        "startId": "8",
+        "endId": "19",
+        "image": "8-19.png",
+        "textDescription": "Take the right, go through the door and then down the stairs.",
         "distance": 10
     },
     {
@@ -265,6 +301,15 @@
         "distance": 10
     },
     {
+        "id": "10-17",
+        "isInside": true,
+        "startId": "10",
+        "endId": "17",
+        "image": "10-17.png",
+        "textDescription": "Go down the stairs.",
+        "distance": 10
+    },
+    {
         "id": "11-8",
         "startId": "11",
         "endId": "8",
@@ -279,6 +324,15 @@
         "distance": 10
     },
 
+    {
+        "id": "12-2",
+        "isInside": true,
+        "startId": "12",
+        "endId": "2",
+        "image": "12-2.png",
+        "textDescription": "Go through the door, take the immediately right then go straight. Go through the door at the end of the corridor and go up the stairs.",
+        "distance": 10
+    },
     {
         "id": "12-13",
         "isInside": true,
@@ -310,6 +364,15 @@
         "endId": "20",
         "image": "13-20.png",
         "distance": 20
+    },
+    {
+        "id": "14-7",
+        "isInside": true,
+        "startId": "14",
+        "endId": "7",
+        "image": "14-7.png",
+        "textDescription": "Go up the stairs.",
+        "distance": 10
     },
     {
         "id": "14-13",
@@ -364,6 +427,15 @@
         "distance": 8
     },
     {
+        "id": "17-10",
+        "isInside": true,
+        "startId": "17",
+        "endId": "10",
+        "image": "17-10.png",
+        "textDescription": "Go up the stairs.",
+        "distance": 10
+    },
+    {
         "id": "17-16",
         "isInside": true,
         "startId": "17",
@@ -397,6 +469,15 @@
         "image": "18-19.png",
         "textDescription": "Facing the wall, then take the right and go through the door.",
         "distance": 5
+    },
+    {
+        "id": "19-8",
+        "isInside": true,
+        "startId": "19",
+        "endId": "8",
+        "image": "19-8.png",
+        "textDescription": "Go up the stairs.",
+        "distance": 10
     },
     {
         "id": "19-18",
@@ -437,6 +518,15 @@
         "startId": "20",
         "endId": "21",
         "image": "20-21.png",
+        "distance": 10
+    },
+    {
+        "id": "21-3",
+        "isInside": true,
+        "startId": "21",
+        "endId": "3",
+        "image": "21-3.png",
+        "textDescription": "Go up the stairs.",
         "distance": 10
     },
     {
