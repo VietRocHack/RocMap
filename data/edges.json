@@ -48,7 +48,7 @@
         "endId": "12",
         "image": "2-12.png",
         "textDescription": "Go down the stairs.",
-        "distance": 10
+        "distance": 15
     },
     {
         "id": "3-1",
@@ -85,7 +85,7 @@
         "endId": "21",
         "image": "3-21.png",
         "textDescription": "Go down the stairs.",
-        "distance": 10
+        "distance": 15
     },
     {
         "id": "4-2",
@@ -213,7 +213,7 @@
         "endId": "14",
         "image": "7-14.png",
         "textDescription": "Take the left, go through the door and then down the stairs.",
-        "distance": 10
+        "distance": 15
     },
     {
         "id": "8-5",
@@ -257,7 +257,7 @@
         "endId": "19",
         "image": "8-19.png",
         "textDescription": "Take the right, go through the door and then down the stairs.",
-        "distance": 10
+        "distance": 15
     },
     {
         "id": "9-7",
@@ -307,7 +307,7 @@
         "endId": "17",
         "image": "10-17.png",
         "textDescription": "Go down the stairs.",
-        "distance": 10
+        "distance": 15
     },
     {
         "id": "11-8",
@@ -331,7 +331,7 @@
         "endId": "2",
         "image": "12-2.png",
         "textDescription": "Go through the door, take the immediately right then go straight. Go through the door at the end of the corridor and go up the stairs.",
-        "distance": 10
+        "distance": 15
     },
     {
         "id": "12-13",
@@ -372,7 +372,7 @@
         "endId": "7",
         "image": "14-7.png",
         "textDescription": "Go up the stairs.",
-        "distance": 10
+        "distance": 15
     },
     {
         "id": "14-13",
@@ -433,7 +433,7 @@
         "endId": "10",
         "image": "17-10.png",
         "textDescription": "Go up the stairs.",
-        "distance": 10
+        "distance": 15
     },
     {
         "id": "17-16",
@@ -477,7 +477,7 @@
         "endId": "8",
         "image": "19-8.png",
         "textDescription": "Go up the stairs.",
-        "distance": 10
+        "distance": 15
     },
     {
         "id": "19-18",
@@ -527,7 +527,7 @@
         "endId": "3",
         "image": "21-3.png",
         "textDescription": "Go up the stairs.",
-        "distance": 10
+        "distance": 15
     },
     {
         "id": "21-20",
