@@ -1,5 +1,5 @@
 import functions_framework
-import graph
+import direction
 
 @functions_framework.http
 def find_direction(request):
@@ -12,14 +12,15 @@ def find_direction(request):
         Response object using `make_response`
         <https://flask.palletsprojects.com/en/1.1.x/api/#flask.make_response>.
     """
+    print(request.get_json())
     request_json = request.get_json(silent=True)
     request_args = request.args
 
     start_id = request_json['startId']
     end_id = request_json['endId']
 
-    graph, edges_dict = graph.load_data("../sample")
+    graph, edges_dict = direction.load_data("../data")
 
-    path = find_shortest_path(start_id, end_id, graph, edges_dict)
+    path = direction.find_shortest_path(start_id, end_id, graph, edges_dict)
 
     return path
