@@ -6,11 +6,13 @@ from unittest.mock import Mock
 def test_valid():
     path = find_direction(
         Mock(
-            get_json=Mock(
-                return_value={
-                    "startId": "10",
-                    "endId": "12",
-                }
+            get_data=Mock(
+                return_value=json.dumps(
+                    {
+                        "startId": "10",
+                        "endId": "12",
+                    }
+                )
             )
         )
     )

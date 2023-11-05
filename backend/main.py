@@ -1,5 +1,8 @@
 import functions_framework
 import direction
+import json
+
+headers = {"Access-Control-Allow-Origin": "*"}
 
 
 @functions_framework.http
@@ -13,7 +16,8 @@ def find_direction(request):
         Response object using `make_response`
         <https://flask.palletsprojects.com/en/1.1.x/api/#flask.make_response>.
     """
-    request_json = request.get_json(silent=True)
+    body_data = request.get_data()
+    request_json = json.loads(body_data)
 
     start_id = request_json["startId"]
     end_id = request_json["endId"]
@@ -24,7 +28,7 @@ def find_direction(request):
 
     detailed_path = get_detailed_path(path, edges_dict)
 
-    return detailed_path
+    return ({"response": detailed_path}, 200, headers)
 
 
 def get_image_url(raw):
