@@ -19,13 +19,20 @@ def find_direction(request):
     body_data = request.get_data()
     request_json = json.loads(body_data)
 
-    start_id = request_json["startId"]
-    end_id = request_json["endId"]
+    start_door_id = request_json["startDoorId"]
+    end_hall_id = request_json["endHallId"]
     weather = 0 if "weather" not in request_json else request_json["weather"]
 
-    graph, edges_dict = direction.load_data("../data")
+    graph, edges_dict, halls_dict = direction.load_data("../data")
 
-    path = direction.find_shortest_path(start_id, end_id, graph, edges_dict, weather)
+    path = direction.find_shortest_path(
+        start_door_id,
+        end_hall_id,
+        graph,
+        edges_dict,
+        halls_dict,
+        weather,
+    )
 
     detailed_path = get_detailed_path(path, edges_dict)
 

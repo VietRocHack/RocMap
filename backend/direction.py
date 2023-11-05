@@ -14,10 +14,16 @@ def load_data(data_dir):
     edges_response = requests.get(
         "https://raw.githubusercontent.com/goodudetheboy/RocMap/data/data/edges.json"
     )
+
+    halls_response = requests.get(
+        "https://raw.githubusercontent.com/goodudetheboy/RocMap/data/data/halls.json"
+    )
     nodes = nodes_response.json()
     edges = edges_response.json()
+    halls = halls_response.json()
 
     edges_dict = {}
+    halls_dict = {}
 
     graph = {}
 
@@ -30,13 +36,26 @@ def load_data(data_dir):
         graph[start_node].append(edge_id)
         edges_dict[edge["id"]] = edge
 
-    return (graph, edges_dict)
+    for hall in halls:
+        halls_dict[hall["id"]] = hall
+
+    return (graph, edges_dict, halls_dict)
 
 
-def find_shortest_path(start_id, end_id, graph, edges_dict, weather):
+def find_shortest_path(
+    start_door_id,
+    end_hall_id,
+    graph,
+    edges_dict,
+    halls_dict,
+    weather,
+):
     heap = []
+    print(halls_dict)
+    if start_door_id in halls_dict[end_hall_id]["doors"]:
+        return []
 
-    for edge_id in graph[start_id]:
+    for edge_id in graph[start_door_id]:
         heap.append((get_weighted_distance(edges_dict[edge_id], weather), [edge_id]))
 
     heapify(heap)
@@ -46,7 +65,7 @@ def find_shortest_path(start_id, end_id, graph, edges_dict, weather):
         dist = top[0]
         path = top[1]
         cur_id = edges_dict[path[0]]["endId"]
-        if cur_id == end_id:
+        if cur_id in halls_dict[end_hall_id]["doors"]:
             return top
 
         for edge_id in graph[cur_id]:
@@ -63,7 +82,7 @@ def find_shortest_path(start_id, end_id, graph, edges_dict, weather):
     return []
 
 
-n_weights = [5, 10, 15, 20]
+n_weights = [2, 5, 10, 15]
 p_weights = [0.1, 0.5, 0.75, 1]
 
 

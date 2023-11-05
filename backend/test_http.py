@@ -9,9 +9,9 @@ def test_valid():
             get_data=Mock(
                 return_value=json.dumps(
                     {
-                        "startId": "6",
-                        "endId": "15",
-                        "weather": 0,
+                        "startDoorId": "10",
+                        "endHallId": "4",
+                        "weather": 2,
                     }
                 )
             )
