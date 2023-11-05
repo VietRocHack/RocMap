@@ -71,6 +71,11 @@ html {
   animation: moveDown 2s ease;
 }
 
+.doors-dropdown select {
+	max-width: 300px;
+	height: 40px;
+}
+
 @keyframes moveDown {
   0% {
     transform: translateY(-100%);
