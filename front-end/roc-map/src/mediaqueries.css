@@ -114,19 +114,23 @@
   .button-in-container{
     color: black;
     border: black 0.13rem solid;
-    
+  }
+	.button-find-another{
+    color: grey;
+    border: grey 0.13rem solid;
+		width: 100%;
   }
 
   .image-container {
     max-width: 100%;
+		top: 20px;
   }
 
   .pop-up-container{
   background-color: white;
   box-shadow: 0 0 30px rgba(0, 0, 0, 5);
-  padding: 10px;
+  padding: 10px 10px 40px 10px;
   border-radius: 10px;
-  border: 4px solid rgb(0, 0, 0);
   color: black;
   position: relative; 
   z-index: 1; 

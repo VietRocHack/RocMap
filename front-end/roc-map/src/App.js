@@ -4,12 +4,18 @@ import doorDescription from "./utils/doorDescription.json";
 import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
 import "./mediaqueries.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamationCircle, faPersonRunning, faPersonWalking } from '@fortawesome/free-solid-svg-icons';
+import WeatherRating from "./WeatherRating";
 
 function App() {
   const [arrInfo, setArrInfo] = useState([{}]);
   const [showResult, setShowResult] = useState(false);
   const [isStartVisible, setIsStartVisible] = useState(false);
   const [isEndVisible, setIsEndVisible] = useState(false);
+  const [curLoc, setCurLoc] = useState(0);
+  const [remDist, setRemDist] = useState([]);
+  const [weatherQuality, setWeatherQuality] = useState(0); // Initial value of 3, which represents neutral weather quality
   const [formData, setFormData] = React.useState({
     start: "",
     end: "",
@@ -17,7 +23,7 @@ function App() {
 
   const [startValue, setStartValue] = useState("");
   const [destinationValue, setDestinationValue] = useState("");
-  
+
 
   // Inside your component function
   const [filteredHallsFrom, setFilteredHallsFrom] = useState([]);
@@ -79,7 +85,7 @@ function App() {
     if (matchingDoors) {
       setAvailableDoors(matchingDoors.doors);
     } else {
-      setAvailableDoors([]); 
+      setAvailableDoors([]);
     }
   };
 
@@ -95,9 +101,12 @@ function App() {
 
   const showResultDiv = () => {
     var dirRequest = {
-      startId: "10",
-      endId: "12",
+      startDoorId: "10",
+      endHallId: "4",
+      weather: weatherQuality,
     };
+    setCurLoc(0);
+    setRemDist([]);
     // turn on loading indicator
     fetch("https://us-central1-rocmap.cloudfunctions.net/findDirection", {
       method: "POST",
@@ -109,11 +118,45 @@ function App() {
         alert("Something happened when contacting backend!");
         return;
       }
-      setArrInfo(processed.response);
-      alert(JSON.stringify(processed.response));
+      const path = processed.response;
+      setArrInfo(processed.response.reverse());
+
+      let totalDist = 0;
+      for (const p of path) {
+        totalDist += p.dist * 2;
+      }
+      let remDist = [];
+      for (const p of path) {
+        remDist.push(totalDist);
+        totalDist -= p.dist * 2;
+      }
+
+      setRemDist(remDist);
+
     });
     setShowResult(!showResult);
   };
+
+  const changeLoc = (increase) => {
+    if (increase) {
+      setCurLoc(old => Math.min(old + 1, arrInfo.length - 1));
+    } else {
+      setCurLoc(old => Math.max(old - 1, 0));
+    }
+  }
+
+  const getETA = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = time - minutes * 60;
+    let res = "";
+    if (minutes > 0) {
+      res += minutes + "m ";
+    }
+    if (seconds > 0) {
+      res += seconds + "s";
+    }
+    return res;
+  }
 
   return (
     <>
@@ -172,23 +215,24 @@ function App() {
             </div>
 
             <div className="doors-dropdown">
-            {selectedStartLocation && availableDoors.length > 0 && (
-              <select onChange={(event) => {
-                console.log(event.target.value);
-                setStartDoorId(event.target.value);
-              }}>
-                <option value={null}>Select a door</option>
-                {availableDoors.map((door, index) => {
-                  const matchingDescription = doorDescription.find((desc) => desc.id === door);
-                  
-                  return (
-                  <option key={index} value={door}>
-                    {matchingDescription.doorDescription}
-                  </option>
-                )})}
-              </select>
-            )}
-          </div>
+              {selectedStartLocation && availableDoors.length > 0 && (
+                <select onChange={(event) => {
+                  console.log(event.target.value);
+                  setStartDoorId(event.target.value);
+                }}>
+                  <option value={null}>Select a door</option>
+                  {availableDoors.map((door, index) => {
+                    const matchingDescription = doorDescription.find((desc) => desc.id === door);
+
+                    return (
+                      <option key={index} value={door}>
+                        {matchingDescription.doorDescription}
+                      </option>
+                    )
+                  })}
+                </select>
+              )}
+            </div>
 
             <div class="autocomplete-wrapper">
               <input
@@ -223,20 +267,21 @@ function App() {
             </div>
 
             <div className="doors-dropdown">
-            {selectedEndLocation && availableDoors.length > 0 && (
-              <select>
-              <option value="">Select a door</option>
-              {availableDoors.map((door, index) => {
-                const matchingDescription = doorDescription.find((desc) => desc.id === door);
+              {selectedEndLocation && availableDoors.length > 0 && (
+                <select>
+                  <option value="">Select a door</option>
+                  {availableDoors.map((door, index) => {
+                    const matchingDescription = doorDescription.find((desc) => desc.id === door);
 
-                return (
-                <option key={index} value={door}>
-                  {matchingDescription.doorDescription}
-                </option>
-              )})}
-            </select>
-            )}
-          </div>
+                    return (
+                      <option key={index} value={door}>
+                        {matchingDescription.doorDescription}
+                      </option>
+                    )
+                  })}
+                </select>
+              )}
+            </div>
 
           </div>
 
@@ -244,53 +289,62 @@ function App() {
           <div className="clarify-info">
             <div>Start: {startValue} - {startDoorId && doorDescription.find((desc) => desc.id === startDoorId).doorDescription} </div>
             <div>Destination: {destinationValue}</div>
-          </div>
-          <div className="button-container">
-            <button className="submit-button" onClick={showResultDiv}>
-              Submit
-            </button>
-          </div>
+          </div></div>
+        <WeatherRating weatherQuality={weatherQuality} setWeatherQuality={setWeatherQuality} />
+        <div className="button-container">
+          <button className="submit-button" onClick={showResultDiv}>
+            Submit
+          </button>
         </div>
       </div>
 
       {showResult && (
         <div className="result">
           <div className="image-container">
-            {arrInfo.length > 0 ? (
-              <img
-                src={arrInfo[0].image}
-                alt="pic"
-                style={{ objectFit: "cover", width: "100%", height: "100%" }}
-              />
-            ) : (
-              <p>No image available</p>
-            )}
+            <img
+              src={arrInfo[curLoc].image}
+              alt="pic"
+            />
           </div>
-
           <div className="pop-up-container">
+            <div className="info-text"><FontAwesomeIcon icon={faExclamationCircle} /> You can scroll the image for more info</div>
             <div className="button-container">
-              <button className="button-in-container">Prev</button>
-
-              <button className="button-in-container">Next</button>
+              {
+                curLoc === 0 ?
+                  <div className="status-text starting">Start</div>
+                  :
+                  <button className="button-in-container" onClick={() => changeLoc(false)}>Prev</button>
+              }
+              {
+                curLoc === arrInfo.length - 1 ?
+                  <div className="status-text arrived">You are here!</div>
+                  :
+                  <button className="button-in-container" onClick={() => changeLoc(true)}>Next</button>
+              }
             </div>
             <div className="details">
-              <span className="description-label">Description:</span> write
-              something here
+              {arrInfo[curLoc].textDescription ?? ""}
             </div>
             <div className="info-title">INFORMATION</div>
             <div className="info-container">
               <div className="info">
                 <div className="info-left">
                   <span className="label">Distance</span>
-                  <span className="value">{arrInfo[0].dist}</span>
+                  <span className="value">{remDist[curLoc]} m</span>
                 </div>
 
                 <div className="info-right">
-                  <span className="label">ETA</span>
-                  <span className="value">1 min</span>
+                  <span className="label">ETA (<FontAwesomeIcon icon={faPersonWalking} />)</span>
+                  <span className="value">{getETA(Math.ceil(remDist[curLoc] / 1.25))}</span>
+                </div>
+
+                <div className="info-right">
+                  <span className="label">ETA (<FontAwesomeIcon icon={faPersonRunning} />)</span>
+                  <span className="value">{getETA(Math.ceil(remDist[curLoc] / 2.25))}</span>
                 </div>
               </div>
             </div>
+            <button className="button-find-another" onClick={() => setShowResult(false)}>Find another route</button>
           </div>
         </div>
       )}
