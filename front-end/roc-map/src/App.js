@@ -171,7 +171,7 @@ function App() {
         <div className="title">
           <p className="title-text">RocMap</p>
           <p ref={descriptionRef} className="sub-title">
-            Find your way around the campus!
+            Find your way around campus!
           </p>
 
           <button className="scroll-button" onClick={scrollDown}>
