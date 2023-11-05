@@ -152,9 +152,11 @@ input[type="text"] {
   margin-bottom: 50px;
 }
 
+
 .label {
   font-weight: bolder;
   font-size: 35px; 
+	text-align: center;
 }
 
 .value {

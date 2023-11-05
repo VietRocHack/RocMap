@@ -2,11 +2,15 @@ import hallsData from "./utils/halls.json";
 import "./App.css";
 import React, { useEffect, useRef, useState } from "react";
 import "./mediaqueries.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPersonRunning, faPersonWalking } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   const [arrInfo, setArrInfo] = useState([{}]);
   const [showResult, setShowResult] = useState(false);
   const [isSuggestionsVisible, setIsSuggestionsVisible] = useState(false);
+  const [curLoc, setCurLoc] = useState(0);
+  const [remDist, setRemDist] = useState([]);
 
   const [formData, setFormData] = React.useState({
     start: "",
@@ -23,10 +27,10 @@ function App() {
   };
 
   const handleAutoCompleteChange = (e) => {
-    const value = e.value; 
+    const value = e.value;
     setFormData({
       ...formData,
-      start: value, 
+      start: value,
     });
     setIsSuggestionsVisible(false);
   };
@@ -47,8 +51,9 @@ function App() {
 
   const showResultDiv = () => {
     var dirRequest = {
-      startId: "10",
-      endId: "12",
+      startDoorId: "10",
+      endHallId: "4",
+      weather: 3,
     };
     // turn on loading indicator
     fetch("https://us-central1-rocmap.cloudfunctions.net/findDirection", {
@@ -61,11 +66,45 @@ function App() {
         alert("Something happened when contacting backend!");
         return;
       }
-      setArrInfo(processed.response);
-      alert(JSON.stringify(processed.response));
+      const path = processed.response;
+      setArrInfo(processed.response.reverse());
+
+      let totalDist = 0;
+      for (const p of path) {
+        totalDist += p.dist * 2;
+      }
+      let remDist = [];
+      for (const p of path) {
+        remDist.push(totalDist);
+        totalDist -= p.dist * 2;
+      }
+
+      setRemDist(remDist);
+
     });
     setShowResult(!showResult);
   };
+
+  const changeLoc = (increase) => {
+    if (increase) {
+      setCurLoc(old => Math.min(old + 1, arrInfo.length - 1));
+    } else {
+      setCurLoc(old => Math.max(old - 1, 0));
+    }
+  }
+
+  const getETA = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = time - minutes * 60;
+    let res = "";
+    if (minutes > 0) {
+      res += minutes + " m ";
+    }
+    if (seconds > 0) {
+      res += seconds + " s";
+    }
+    return res;
+  }
 
   return (
     <>
@@ -102,22 +141,22 @@ function App() {
             />
             {isSuggestionsVisible ? (
               <div class="dropdown">
-              <ul className="autocomplete-list">
-                <div class="dropdown-content">
-                {filteredHalls.length > 0 ? (
-                  filteredHalls.map((hall, index) => (
-                    <li
-                      key={index}
-                      onClick={() => handleAutoCompleteChange(hall.name)}
-                    >
-                      {hall.name}
-                    </li>
-                  ))
-                ) : (
-                  <li>Nothing found</li>
-                )}
-                </div>
-              </ul>
+                <ul className="autocomplete-list">
+                  <div class="dropdown-content">
+                    {filteredHalls.length > 0 ? (
+                      filteredHalls.map((hall, index) => (
+                        <li
+                          key={index}
+                          onClick={() => handleAutoCompleteChange(hall.name)}
+                        >
+                          {hall.name}
+                        </li>
+                      ))
+                    ) : (
+                      <li>Nothing found</li>
+                    )}
+                  </div>
+                </ul>
               </div>
             ) : null}
             <input
@@ -139,38 +178,38 @@ function App() {
       {showResult && (
         <div className="result">
           <div className="image-container">
-            {arrInfo.length > 0 ? (
-              <img
-                src={arrInfo[0].image}
-                alt="pic"
-                style={{ objectFit: "cover", width: "100%", height: "100%" }}
-              />
-            ) : (
-              <p>No image available</p>
-            )}
+            <img
+              src={arrInfo[curLoc].image}
+              alt="pic"
+              style={{ objectFit: "cover", width: "100%", height: "100%" }}
+            />
           </div>
 
           <div className="pop-up-container">
             <div className="button-container">
-              <button className="button-in-container">Prev</button>
+              <button className="button-in-container" onClick={() => changeLoc(false)}>Prev</button>
 
-              <button className="button-in-container">Next</button>
+              <button className="button-in-container" onClick={() => changeLoc(true)}>Next</button>
             </div>
             <div className="details">
-              <span className="description-label">Description:</span> write
-              something here
+              <span className="description-label">Description:</span> {arrInfo[curLoc].textDescription ?? ""}
             </div>
             <div className="info-title">INFORMATION</div>
             <div className="info-container">
               <div className="info">
                 <div className="info-left">
                   <span className="label">Distance</span>
-                  <span className="value">{arrInfo[0].dist}</span>
+                  <span className="value">{remDist[curLoc]} m</span>
                 </div>
 
                 <div className="info-right">
-                  <span className="label">ETA</span>
-                  <span className="value">1 min</span>
+                  <span className="label">ETA (<FontAwesomeIcon icon={faPersonWalking} />)</span>
+                  <span className="value">{getETA(Math.ceil(remDist[curLoc] / 1.25))}</span>
+                </div>
+
+                <div className="info-right">
+                  <span className="label">ETA (<FontAwesomeIcon icon={faPersonRunning} />)</span>
+                  <span className="value">{getETA(Math.ceil(remDist[curLoc] / 2.25))}</span>
                 </div>
               </div>
             </div>
