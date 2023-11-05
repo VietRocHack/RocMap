@@ -234,17 +234,17 @@ button {
   border: white 0.1rem solid;
   border-radius: 2rem;
   cursor: pointer;
-  transition: all 300ms ease;
+  /* transition: all 300ms ease; */
 }
 
-button:hover,
+/* button:hover,
 button:focus,
 submit-button:hover,
 submit-button:focus {
   transform: scale(1.2);
   background-color: white;
   color: black;
-}
+} */
 
 .scroll-button {
   justify-content: center;

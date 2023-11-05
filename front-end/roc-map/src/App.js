@@ -129,56 +129,58 @@ function App() {
           </button>
         </div>
       </div>
-
-      <div className="content" ref={resultRef}>
-        <p className="form-description"> Please input your desired route: </p>
-        <div className="form-container">
-          <div className="input-container">
-            <input
-              type="text"
-              placeholder="From"
-              onChange={handleChange}
-              name="start"
-              value={formData.start}
-              onFocus={() => setIsSuggestionsVisible(!!formData.start)}
-              onBlur={() => setIsSuggestionsVisible(false)}
-            />
-            {isSuggestionsVisible ? (
-              <div class="dropdown">
-                <ul className="autocomplete-list">
-                  <div class="dropdown-content">
-                    {filteredHalls.length > 0 ? (
-                      filteredHalls.map((hall, index) => (
-                        <li
-                          key={index}
-                          onClick={() => handleAutoCompleteChange(hall.name)}
-                        >
-                          {hall.name}
-                        </li>
-                      ))
-                    ) : (
-                      <li>Nothing found</li>
-                    )}
-                  </div>
-                </ul>
-              </div>
-            ) : null}
-            <input
-              type="text"
-              placeholder="To"
-              onChange={handleChange}
-              name="end"
-              value={formData.end}
-            />
-          </div>
-          <WeatherRating weatherQuality={weatherQuality} setWeatherQuality={setWeatherQuality} />
-          <div className="button-container">
-            <button className="submit-button" onClick={showResultDiv}>
-              Submit
-            </button>
+      {
+        !showResult &&
+        <div className="content" ref={resultRef}>
+          <p className="form-description"> Please input your desired route: </p>
+          <div className="form-container">
+            <div className="input-container">
+              <input
+                type="text"
+                placeholder="From"
+                onChange={handleChange}
+                name="start"
+                value={formData.start}
+                onFocus={() => setIsSuggestionsVisible(!!formData.start)}
+                onBlur={() => setIsSuggestionsVisible(false)}
+              />
+              {isSuggestionsVisible ? (
+                <div class="dropdown">
+                  <ul className="autocomplete-list">
+                    <div class="dropdown-content">
+                      {filteredHalls.length > 0 ? (
+                        filteredHalls.map((hall, index) => (
+                          <li
+                            key={index}
+                            onClick={() => handleAutoCompleteChange(hall.name)}
+                          >
+                            {hall.name}
+                          </li>
+                        ))
+                      ) : (
+                        <li>Nothing found</li>
+                      )}
+                    </div>
+                  </ul>
+                </div>
+              ) : null}
+              <input
+                type="text"
+                placeholder="To"
+                onChange={handleChange}
+                name="end"
+                value={formData.end}
+              />
+            </div>
+            <WeatherRating weatherQuality={weatherQuality} setWeatherQuality={setWeatherQuality} />
+            <div className="button-container">
+              <button className="submit-button" onClick={showResultDiv}>
+                Submit
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      }
 
       {showResult && (
         <div className="result">
@@ -226,6 +228,7 @@ function App() {
                 </div>
               </div>
             </div>
+            <button className="button-find-another" onClick={() => setShowResult(false)}>Find another route</button>
           </div>
         </div>
       )}

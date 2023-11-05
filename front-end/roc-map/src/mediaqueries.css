@@ -108,7 +108,11 @@
   .button-in-container{
     color: black;
     border: black 0.13rem solid;
-    
+  }
+	.button-find-another{
+    color: grey;
+    border: grey 0.13rem solid;
+		width: 100%;
   }
 
   .image-container {
