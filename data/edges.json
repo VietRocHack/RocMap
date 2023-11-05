@@ -4,6 +4,7 @@
         "startId": "1",
         "endId": "2",
         "image": "1-2.png",
+        "textDescription": "Go straight this way.",
         "distance": 14
     },
     {
@@ -11,6 +12,7 @@
         "startId": "1",
         "endId": "3",
         "image": "1-3.png",
+        "textDescription": "Go straight this way.",
         "distance": 14
     },
     {
@@ -18,6 +20,7 @@
         "startId": "2",
         "endId": "1",
         "image": "2-1.png",
+        "textDescription": "Go straight this way.",
         "distance": 14
     },
     {
@@ -25,6 +28,7 @@
         "startId": "2",
         "endId": "3",
         "image": "2-3.png",
+        "textDescription": "Go straight this way.",
         "distance": 20
     },
     {
@@ -32,6 +36,7 @@
         "startId": "2",
         "endId": "4",
         "image": "2-4.png",
+        "textDescription": "Go straight this way.",
         "distance": 10
     },
     {
@@ -39,6 +44,7 @@
         "startId": "2",
         "endId": "5",
         "image": "2-5.png",
+        "textDescription": "Go straight this way.",
         "distance": 14
     },
     {
@@ -55,6 +61,7 @@
         "startId": "3",
         "endId": "1",
         "image": "3-1.png",
+        "textDescription": "Go straight this way.",
         "distance": 14
     },
     {
@@ -62,6 +69,7 @@
         "startId": "3",
         "endId": "2",
         "image": "3-2.png",
+        "textDescription": "Go straight this way.",
         "distance": 20
     },
     {
@@ -69,6 +77,7 @@
         "startId": "3",
         "endId": "5",
         "image": "3-5.png",
+        "textDescription": "Go straight the right pathway.",
         "distance": 14
     },
     {
@@ -76,6 +85,7 @@
         "startId": "3",
         "endId": "6",
         "image": "3-6.png",
+        "textDescription": "Go straight this way.",
         "distance": 10
     },
     {
@@ -92,6 +102,7 @@
         "startId": "4",
         "endId": "2",
         "image": "4-2.png",
+        "textDescription": "Go straight this way.",
         "distance": 10
     },
     {
@@ -99,6 +110,7 @@
         "startId": "4",
         "endId": "5",
         "image": "4-5.png",
+        "textDescription": "Go straight this way.",
         "distance": 10
     },
     {
@@ -106,6 +118,7 @@
         "startId": "4",
         "endId": "7",
         "image": "4-7.png",
+        "textDescription": "Go straight this way.",
         "distance": 10
     },
     {
@@ -113,6 +126,7 @@
         "startId": "5",
         "endId": "2",
         "image": "5-2.png",
+        "textDescription": "Go straight this way.",
         "distance": 14
     },
     {
@@ -120,6 +134,7 @@
         "startId": "5",
         "endId": "3",
         "image": "5-3.png",
+        "textDescription": "Go straight this way.",
         "distance": 14
     },
     {
@@ -127,6 +142,7 @@
         "startId": "5",
         "endId": "4",
         "image": "5-4.png",
+        "textDescription": "Go straight this way.",
         "distance": 10
     },
     {
@@ -134,6 +150,7 @@
         "startId": "5",
         "endId": "6",
         "image": "5-6.png",
+        "textDescription": "Go straight this way.",
         "distance": 10
     },
     {
@@ -141,6 +158,7 @@
         "startId": "5",
         "endId": "7",
         "image": "5-7.png",
+        "textDescription": "Go straight this way.",
         "distance": 14
     },
     {
@@ -148,6 +166,7 @@
         "startId": "5",
         "endId": "8",
         "image": "5-8.png",
+        "textDescription": "Go straight this way.",
         "distance": 14
     },
     {
@@ -155,6 +174,7 @@
         "startId": "6",
         "endId": "3",
         "image": "6-3.png",
+        "textDescription": "Go straight this way.",
         "distance": 10
     },
     {
@@ -162,6 +182,7 @@
         "startId": "6",
         "endId": "5",
         "image": "6-5.png",
+        "textDescription": "Go straight this way.",
         "distance": 10
     },
     {
@@ -169,6 +190,7 @@
         "startId": "6",
         "endId": "8",
         "image": "6-8.png",
+        "textDescription": "Go straight this way.",
         "distance": 10
     },
     {
@@ -176,6 +198,7 @@
         "startId": "7",
         "endId": "4",
         "image": "7-4.png",
+        "textDescription": "Go straight this way.",
         "distance": 10
     },
     {
@@ -183,6 +206,7 @@
         "startId": "7",
         "endId": "5",
         "image": "7-5.png",
+        "textDescription": "Go straight this way.",
         "distance": 14
     },
     {
@@ -190,6 +214,7 @@
         "startId": "7",
         "endId": "8",
         "image": "7-8.png",
+        "textDescription": "Go straight this way.",
         "distance": 20
     },
     {
@@ -197,6 +222,7 @@
         "startId": "7",
         "endId": "9",
         "image": "7-9.png",
+        "textDescription": "Go straight this way through the construction.",
         "distance": 10
     },
     {
@@ -204,6 +230,7 @@
         "startId": "7",
         "endId": "10",
         "image": "7-10.png",
+        "textDescription": "Go straight this way.",
         "distance": 14
     },
     {
@@ -220,6 +247,7 @@
         "startId": "8",
         "endId": "5",
         "image": "8-5.png",
+        "textDescription": "Go straight this way.",
         "distance": 14
     },
     {
@@ -227,6 +255,7 @@
         "startId": "8",
         "endId": "6",
         "image": "8-6.png",
+        "textDescription": "Go straight this way.",
         "distance": 10
     },
     {
@@ -234,6 +263,7 @@
         "startId": "8",
         "endId": "7",
         "image": "8-7.png",
+        "textDescription": "Go straight this way.",
         "distance": 20
     },
     {
@@ -241,6 +271,7 @@
         "startId": "8",
         "endId": "10",
         "image": "8-10.png",
+        "textDescription": "Go straight this way.",
         "distance": 14
     },
     {
@@ -248,6 +279,7 @@
         "startId": "8",
         "endId": "11",
         "image": "8-11.png",
+        "textDescription": "Go straight this way.",
         "distance": 10
     },
     {
@@ -264,6 +296,7 @@
         "startId": "9",
         "endId": "7",
         "image": "9-7.png",
+        "textDescription": "Go straight this way.",
         "distance": 10
     },
     {
@@ -271,12 +304,14 @@
         "startId": "9",
         "endId": "10",
         "image": "9-10.png",
+        "textDescription": "Go straight this way.",
         "distance": 10
     },{
         "id": "10-7",
         "startId": "10",
         "endId": "7",
         "image": "10-7.png",
+        "textDescription": "Go straight this way.",
         "distance": 14
     },
     {
@@ -284,6 +319,7 @@
         "startId": "10",
         "endId": "8",
         "image": "10-8.png",
+        "textDescription": "Go straight this way.",
         "distance": 14
     },
     {
@@ -291,6 +327,7 @@
         "startId": "10",
         "endId": "9",
         "image": "10-9.png",
+        "textDescription": "Go straight this way.",
         "distance": 10
     },
     {
@@ -298,6 +335,7 @@
         "startId": "10",
         "endId": "11",
         "image": "10-11.png",
+        "textDescription": "Go straight this way.",
         "distance": 10
     },
     {
@@ -314,6 +352,7 @@
         "startId": "11",
         "endId": "8",
         "image": "11-8.png",
+        "textDescription": "Go straight this way.",
         "distance": 10
     },
     {
@@ -321,6 +360,7 @@
         "startId": "11",
         "endId": "10",
         "image": "11-10.png",
+        "textDescription": "Go straight this way.",
         "distance": 10
     },
 
@@ -339,6 +379,7 @@
         "startId": "12",
         "endId": "13",
         "image": "12-13.png",
+        "textDescription": "Go straight through the door until reaching the intersection.",
         "distance": 10
     },
     {
@@ -347,6 +388,7 @@
         "startId": "13",
         "endId": "12",
         "image": "13-12.png",
+        "textDescription": "Go straight through the right door in front and you are at level 2 of Dewey Hall.",
         "distance": 10
     },
     {
@@ -355,6 +397,7 @@
         "startId": "13",
         "endId": "14",
         "image": "13-14.png",
+        "textDescription": "Go straight till the end of this corridor and you are at level 2 of Bausch & Lomb Hall.",
         "distance": 10
     },
     {
@@ -363,6 +406,7 @@
         "startId": "13",
         "endId": "20",
         "image": "13-20.png",
+        "textDescription": "Go straight through the tunnel.",
         "distance": 20
     },
     {
@@ -380,6 +424,7 @@
         "startId": "14",
         "endId": "13",
         "image": "14-13.png",
+        "textDescription": "Go straight the corridor until reaching the intersection.",
         "distance": 10
     },
     {
@@ -424,6 +469,7 @@
         "startId": "16",
         "endId": "17",
         "image": "16-17.png",
+        "textDescription": "Go straight until reaching the intersection.",
         "distance": 8
     },
     {
@@ -441,6 +487,7 @@
         "startId": "17",
         "endId": "16",
         "image": "17-16.png",
+        "textDescription": "Go straight until reaching the bench.",
         "distance": 8
     },
     {
@@ -494,6 +541,7 @@
         "startId": "19",
         "endId": "20",
         "image": "19-20.png",
+        "textDescription": "Go straight through the automatic door until reaching the intersection between Morey and Lattimore.",
         "distance": 10
     },
     {
@@ -502,6 +550,7 @@
         "startId": "20",
         "endId": "13",
         "image": "20-13.png",
+        "textDescription": "Go straight through the tunnel.",
         "distance": 20
     },
     {
@@ -510,6 +559,7 @@
         "startId": "20",
         "endId": "19",
         "image": "20-19.png",
+        "textDescription": "Go through the door, and walk all till the end of the hallway and you are in level 2 of Morey Hall.",
         "distance": 10
     },
     {
@@ -518,6 +568,7 @@
         "startId": "20",
         "endId": "21",
         "image": "20-21.png",
+        "textDescription": "Go through the door, and you are in level 2 of Lattimore Hall.",
         "distance": 10
     },
     {
@@ -535,6 +586,7 @@
         "startId": "21",
         "endId": "20",
         "image": "21-20.png",
+        "textDescription": "Go through the door until reaching the intersection between Lattimore and Morey.",
         "distance": 10
     }
 ]
