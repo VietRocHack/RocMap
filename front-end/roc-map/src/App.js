@@ -191,9 +191,18 @@ function App() {
           <div className="pop-up-container">
             <div className="info-text"><FontAwesomeIcon icon={faExclamationCircle} /> You can scroll the image for more info</div>
             <div className="button-container">
-              <button className="button-in-container" onClick={() => changeLoc(false)}>Prev</button>
-
-              <button className="button-in-container" onClick={() => changeLoc(true)}>Next</button>
+              {
+                curLoc === 0 ?
+                  <div className="status-text starting">Start</div>
+                  :
+                  <button className="button-in-container" onClick={() => changeLoc(false)}>Prev</button>
+              }
+              {
+                curLoc === arrInfo.length - 1 ?
+                  <div className="status-text arrived">You are here!</div>
+                  :
+                  <button className="button-in-container" onClick={() => changeLoc(true)}>Next</button>
+              }
             </div>
             <div className="details">
               {arrInfo[curLoc].textDescription ?? ""}

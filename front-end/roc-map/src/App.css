@@ -212,6 +212,13 @@ input[type="text"] {
 
 /*____BUTTON____ */
 
+.status-text {
+	/* color: green; */
+	font-weight: bold;
+	text-align: center;
+	width: 100%;
+}
+
 .button-container {
   display: flex;
   justify-content: space-between; 
