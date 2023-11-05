@@ -1,0 +1,213 @@
+@media (max-width: 1200px) {
+  .top-container {
+    margin: 0 10px; 
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    color: white;
+    font-size: 10px;
+
+  }
+
+  .left-section,
+  .middle-section,
+  .right-section {
+    font-weight: 800;
+    font-size: medium;
+  }
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 65vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .title-text {
+    font-size: 80px;
+    position: relative;
+    font-weight: 1000;
+    color: white;
+		margin-bottom: 50px;
+		margin-top: 150px;
+  }
+  
+  .sub-title {
+    color: rgb(133, 131, 131);
+    font-weight: 900;
+    margin-top: 200px;
+    font-size: 20px;
+    position: absolute;
+    transition: opacity 3s ease, transform 3s ease;
+    text-align: center;
+    display: flex; 
+    align-items: center;
+		/* margin-bottom: -25px; */
+  }
+
+  .input-container {
+    flex-direction: column; 
+    width: 80%; 
+    margin: 25px;
+  }
+
+  input[type="text"] {
+    width: 300px;
+  }
+
+  .info-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 23px;
+    font-weight: 900;
+  }
+
+  .info-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .info-left,
+  .info-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 50%; 
+  }
+
+  .label {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .value{
+    font-weight: 200;
+  }
+
+  .clarify-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .button-container {
+    margin-bottom: 40px;
+  }
+
+  button {
+    padding: 20px 70px;
+  }
+
+  .button-in-container{
+    color: black;
+    border: black 0.13rem solid;
+  }
+	.button-find-another{
+    color: grey;
+    border: grey 0.13rem solid;
+		width: 100%;
+  }
+
+  .image-container {
+    max-width: 100%;
+		top: 20px;
+  }
+
+  .pop-up-container{
+  background-color: white;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 5);
+  padding: 10px 10px 40px 10px;
+  border-radius: 10px;
+  color: black;
+  position: relative; 
+  z-index: 1; 
+  }
+  
+  .details {
+    font-weight: 200;
+  }
+  .description-label{
+    font-weight: 700;
+    font-size:23px;
+  }
+  .details::after {
+    content: "";
+    display: block;
+    height: 1.5px;
+    width: 100%;
+    background: linear-gradient(to right, transparent, #000, transparent);
+    margin: 30px 0;
+  }
+}
+
+
+.autocomplete-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+
+/* Style for the dropdown container */
+.dropdown {
+  position: absolute;
+  top:100%;
+  left: 0;
+}
+
+/* Style for the list */
+.autocomplete-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Style for the dropdown content */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ccc;
+  z-index: 1;
+  color: black;
+}
+
+/* Style for individual items in the dropdown */
+.dropdown-content div {
+  padding: 5px;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* Hover effect for individual items */
+.dropdown-content div:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+/* Style for the "Nothing found" message */
+.dropdown-content .nothing-found {
+  padding: 10px;
+  text-align: center;
+}
+
+/* Show the dropdown content when the dropdown is open */
+.dropdown.active .dropdown-content {
+  display: block;
+}

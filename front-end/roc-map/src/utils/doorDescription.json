@@ -1,0 +1,117 @@
+[
+    {
+        "id": "1",
+        "isDoor": false
+    },
+    {
+        "id": "2",
+        "isDoor": true,
+        "doorDescription": "Dewey Hall's front door (facing the Quad).",
+        "hallId": "4"
+    },
+    {
+        "id": "3",
+        "isDoor": true,
+        "doorDescription": "Lattimore Hall's front door (facing the Quad).",
+        "hallId": "5"
+    },
+    {
+        "id": "4",
+        "isDoor": false
+    },
+    {
+        "id": "5",
+        "isDoor": false
+    },
+    {
+        "id": "6",
+        "isDoor": false
+    },
+    {
+        "id": "7",
+        "isDoor": true,
+        "doorDescription": "Bausch & Lomb Hall's front door (facing the Quad).",
+        "hallId": "2"
+    },
+    {
+        "id": "8",
+        "isDoor": true,
+        "doorDescription": "Morey Hall's front door (facing the Quad).",
+        "hallId": "3"
+    },
+    {
+        "id": "9",
+        "isDoor": false
+    },
+    {
+        "id": "10",
+        "isDoor": true,
+        "doorDescription": "Rush Rhees's front door (facing the Quad).",
+        "hallId": "1"
+    },
+    {
+        "id": "11",
+        "isDoor": false
+    },
+
+    {
+        "id": "12",
+        "isDoor": true,
+        "doorDescription": "Take the left door at the end of corridor.",
+        "isInside": true,
+        "hallId": "4"
+    },
+    {
+        "id": "13",
+        "isDoor": false,
+        "isInside": true
+    },
+    {
+        "id": "14",
+        "isDoor": true,
+        "doorDescription": "Facing the wall, take the right door.",
+        "isInside": true,
+        "hallId": "2"
+    },
+    {
+        "id": "15",
+        "isDoor": false,
+        "isInside": true
+    },
+    {
+        "id": "16",
+        "isDoor": false,
+        "isInside": true
+    },
+    {
+        "id": "17",
+        "isDoor": true,
+        "doorDescription": "Tunnel intersection under Rush Rhees's front door.",
+        "isInside": true,
+        "hallId": "1"
+    },
+    {
+        "id": "18",
+        "isDoor": false,
+        "isInside": true
+    },
+    {
+        "id": "19",
+        "isDoor": true,
+        "doorDescription": "On the right along the corridor heading towards Lattimore.",
+        "isInside": true,
+        "hallId": "3"
+    },
+    {
+        "id": "20",
+        "isDoor": false,
+        "isInside": true
+    },
+    {
+        "id": "21",
+        "isDoor": true,
+        "doorDescription": "The right door at the end of corridor.",
+        "isInside": true,
+        "hallId": "5"
+    }
+]

@@ -1,0 +1,27 @@
+[
+    {
+        "id": "1",
+        "name": "Rush Rhees Library",
+        "doors": ["10", "17"]
+    },
+    {
+        "id": "2",
+        "name": "Bausch & Lomb Hall",
+        "doors": ["7", "14"]
+    },
+    {
+        "id": "3",
+        "name": "Morey Hall",
+        "doors": ["8", "19"]
+    },
+    {
+        "id": "4",
+        "name": "Dewey Hall",
+        "doors": ["2", "12"]
+    },
+    {
+        "id": "5",
+        "name": "Lattimore Hall",
+        "doors": ["3", "21"]
+    }
+]

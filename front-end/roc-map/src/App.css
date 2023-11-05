@@ -1,0 +1,282 @@
+body {font-family: 'Montserrat', sans-serif;
+
+  background: linear-gradient(rgba(0, 0, 0, 1) 5%, rgb(47, 47, 88)); /* Black to Light Black Gradient */
+  color: white; 
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+  width: 100%;
+}
+
+/* TITLE */
+
+.background-container{
+  margin-bottom: 200px
+}
+
+.top-container {
+  margin:0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  color: white;
+  padding: 10px;
+}
+
+.left-section,
+.middle-section,
+.right-section  {
+  font-weight: 900;
+  font-size: 20px;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 87vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.title-text {
+  font-size: 150px;
+  position: relative;
+  font-weight: 1000;
+  color: white;
+}
+
+.sub-title {
+  color: rgb(133, 131, 131);
+  font-weight: 900;
+  margin-top: 200px;
+  font-size: 30px;
+  position: absolute;
+  transition: opacity 3s ease, transform 3s ease;  
+}
+
+.animate-description {
+  opacity: 1;
+  transform: translateY(0);
+  animation: moveDown 2s ease;
+}
+
+.doors-dropdown select {
+	max-width: 300px;
+	height: 40px;
+}
+
+@keyframes moveDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
+/* _____FORM______ */
+
+.form-description {
+  text-align: center;
+  font-weight: 600;
+  font-size: 50px;
+  margin-bottom: 0;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 35vh;  */
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px; 
+  border: 2px solid white;
+  padding: 20px; 
+  border-radius: 15px;
+  width: 500px;
+}
+
+input[type="text"] {
+  padding: 10px; 
+  border: none;
+  border-bottom: 2px solid #000000;
+  border-radius: 5px;
+  margin: 0;
+  width: 200px; 
+}
+
+
+.button-container {
+  display: flex;
+  align-items: center; 
+  margin-top: 20px;
+}
+
+
+/* _____INFO______ */
+
+.info-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; 
+}
+
+.info-text {
+	padding-top: 10px;
+	font-size: small;
+	width: 100%;
+	text-align: center;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  width: 50%; 
+}
+
+.info-left,
+.info-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+
+.label {
+  font-weight: bolder;
+  font-size: 35px; 
+	text-align: center;
+}
+
+.value {
+  font-weight: bold;
+  font-size: 20px; 
+  margin-top: 5px; 
+}
+
+/**RESULT PART **/
+
+/*___DETAILS___*/
+.details {
+  margin-left: 20px;
+  font-weight: 700;
+  font-size: 21px;
+  margin-bottom: 30px; 
+	text-align: center;
+}
+
+
+/* ____IMAGE_____ */
+
+.image-container {
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh; 
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #a7a6a6; 
+	overflow: auto;
+  border: 1px solid #ccc; 
+  border-radius: 15px; 
+	position: relative;
+}
+
+/* Style the image (adjust as needed) */
+.image-container img {
+  width: 100%; 
+	height: auto;
+	/* position: absolute; */
+	top: 0;
+	left: 0;
+}
+
+/*____BUTTON____ */
+
+.status-text {
+	/* color: green; */
+	font-weight: bold;
+	text-align: center;
+	width: 100%;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center; 
+  margin-top: 20px; 
+  padding: 0 20px; 
+}
+
+button {
+  color: white;
+  padding: 20px 70px;
+  font-weight: 600;
+  background: none; 
+  border: white 0.1rem solid;
+  border-radius: 2rem;
+  cursor: pointer;
+  /* transition: all 300ms ease; */
+}
+
+/* button:hover,
+button:focus,
+submit-button:hover,
+submit-button:focus {
+  transform: scale(1.2);
+  background-color: white;
+  color: black;
+} */
+
+.scroll-button {
+  justify-content: center;
+  align-self: flex;
+  font-weight: 800;
+}
+
+.clarify-info-text {
+	font-size: large;
+	max-width: 400px;
+	text-align: center;
+	margin-bottom: 20px;
+	padding: 0 20px;
+}
+
+.route {
+	width: 100%;
+	max-width: 600px;
+	background-color: white;
+	display: flex;
+}
+
+.route-container {
+	display: flex;
+	justify-content: center;
+}
+
+.route-text {
+	width: 50%;
+	color: black;
+	padding: 20px;
+}

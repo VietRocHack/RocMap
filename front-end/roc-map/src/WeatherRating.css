@@ -1,0 +1,31 @@
+.weather-quality {
+	justify-content: center;
+}
+
+.weather-quality-text {
+	padding: 0 20px;
+	text-align: center;
+}
+
+
+.radio-group {
+	width: 100%;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.radio-group-buttons {
+	display: flex;
+	flex-direction: column;
+}
+
+.radio-button {
+	height: 50px;
+	text-align: cetner;
+}
+
+.weather-quality-radio-group-button-text {
+	width: 100%;
+}
