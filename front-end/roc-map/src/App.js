@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
 import "./mediaqueries.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExclamationCircle, faPersonRunning, faPersonWalking } from '@fortawesome/free-solid-svg-icons';
+import { faExclamationCircle, faPersonRunning, faPersonWalking, faLocationDot, faFlag } from '@fortawesome/free-solid-svg-icons';
 import WeatherRating from "./WeatherRating";
 
 function App() {
@@ -163,15 +163,15 @@ function App() {
   return (
     <>
       <div className="background-container">
-        <div className="top-container">
-          <div className="left-section">GroupName</div>
-          <div className="middle-section">DandyHack</div>
+        {/* <div className="top-container">
+          <div className="left-section"></div>
+          <div className="middle-section">DandyHack'</div>
           <div className="right-section">Nov 5th 2023</div>
-        </div>
+        </div> */}
         <div className="title">
-          <p className="title-text">ROCMAP</p>
+          <p className="title-text">RocMap</p>
           <p ref={descriptionRef} className="sub-title">
-            Find the most optimal path in UR campus
+            Find your way around the campus!
           </p>
 
           <button className="scroll-button" onClick={scrollDown}>
@@ -292,6 +292,17 @@ function App() {
       {
         showResult && (
           <div className="result">
+            <div className="route-container">
+              <div className="route">
+                <div className="route-text route-start">
+
+                  <FontAwesomeIcon icon={faLocationDot} /> {startValue}
+                </div>
+                <div className="route-text route-end">
+                  <FontAwesomeIcon icon={faFlag} /> {destinationValue}
+                </div>
+              </div>
+            </div>
             <div className="image-container">
               <img
                 src={arrInfo[curLoc].image}
