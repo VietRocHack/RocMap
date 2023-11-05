@@ -98,10 +98,10 @@ function App() {
     const seconds = time - minutes * 60;
     let res = "";
     if (minutes > 0) {
-      res += minutes + " m ";
+      res += minutes + "m ";
     }
     if (seconds > 0) {
-      res += seconds + " s";
+      res += seconds + "s";
     }
     return res;
   }
