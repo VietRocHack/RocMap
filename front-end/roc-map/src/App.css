@@ -98,7 +98,7 @@ html {
   align-items: center;
   /* height: 35vh;  */
   flex-direction: column;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 .input-container {
@@ -221,7 +221,7 @@ input[type="text"] {
 
 .button-container {
   display: flex;
-  justify-content: space-between; 
+  justify-content: center; 
   margin-top: 20px; 
   padding: 0 20px; 
 }
@@ -251,4 +251,11 @@ submit-button:focus {
   align-self: flex;
   font-weight: 800;
   font-family: 'Courier New', Courier, monospace;
+}
+
+.clarify-info-text {
+	font-size: large;
+	max-width: 400px;
+	text-align: center;
+	margin-bottom: 20px;
 }

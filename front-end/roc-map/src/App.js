@@ -81,11 +81,13 @@ function App() {
     setIsStartVisible(false);
     setIsEndVisible(false);
 
-    const matchingDoors = doorsData.find((door) => door.name === hall.name);
-    if (matchingDoors) {
-      setAvailableDoors(matchingDoors.doors);
-    } else {
-      setAvailableDoors([]);
+    if (field === "start") {
+      const matchingDoors = doorsData.find((door) => door.name === hall.name);
+      if (matchingDoors) {
+        setAvailableDoors(matchingDoors.doors);
+      } else {
+        setAvailableDoors([]);
+      }
     }
   };
 
@@ -101,8 +103,8 @@ function App() {
 
   const showResultDiv = () => {
     var dirRequest = {
-      startDoorId: "10",
-      endHallId: "4",
+      startDoorId: startDoorId,
+      endHallId: selectedEndLocation.id,
       weather: weatherQuality,
     };
     setCurLoc(0);
@@ -177,177 +179,168 @@ function App() {
           </button>
         </div>
       </div>
+      {
+        !showResult &&
+        <div className="content" ref={resultRef}>
+          <p className="form-description"> Where do you want to go? </p>
+          <div className="form-container">
+            <div className="input-container">
+              <div class="autocomplete-wrapper">
+                <input
+                  type="text"
+                  placeholder="From"
+                  onChange={handleStartChange}
+                  name="start"
+                  value={formData.start}
+                />
+                {isStartVisible && formData.start ? (
+                  <div class="dropdown active">
+                    <ul className="autocomplete-list">
+                      <div class="dropdown-content">
+                        {filteredHallsFrom.length > 0 ? (
+                          filteredHallsFrom.map((hall, index) => (
+                            <div
+                              key={index}
+                              onClick={() =>
+                                handleAutoCompleteChange(hall, "start")
+                              }
+                            >
+                              {hall.name}
+                            </div>
+                          ))
+                        ) : (
+                          <div>Nothing found</div>
+                        )}
+                      </div>
+                    </ul>
+                  </div>
+                ) : null}
+              </div>
 
-      <div className="content" ref={resultRef}>
-        <p className="form-description"> Please input your desired route: </p>
-        <div className="form-container">
-          <div className="input-container">
-            <div class="autocomplete-wrapper">
-              <input
-                type="text"
-                placeholder="From"
-                onChange={handleStartChange}
-                name="start"
-                value={formData.start}
-              />
-              {isStartVisible && formData.start ? (
-                <div class="dropdown active">
-                  <ul className="autocomplete-list">
-                    <div class="dropdown-content">
-                      {filteredHallsFrom.length > 0 ? (
-                        filteredHallsFrom.map((hall, index) => (
-                          <div
-                            key={index}
-                            onClick={() =>
-                              handleAutoCompleteChange(hall, "start")
-                            }
-                          >
-                            {hall.name}
-                          </div>
-                        ))
-                      ) : (
-                        <div>Nothing found</div>
-                      )}
-                    </div>
-                  </ul>
-                </div>
-              ) : null}
-            </div>
+              <div className="doors-dropdown">
+                {selectedStartLocation && availableDoors.length > 0 && (
+                  <select onChange={(event) => {
+                    setStartDoorId(event.target.value);
+                  }}>
+                    <option value={null}>Select a door</option>
+                    {availableDoors.map((door, index) => {
+                      const matchingDescription = doorDescription.find((desc) => desc.id === door);
 
-            <div className="doors-dropdown">
-              {selectedStartLocation && availableDoors.length > 0 && (
-                <select onChange={(event) => {
-                  console.log(event.target.value);
-                  setStartDoorId(event.target.value);
-                }}>
-                  <option value={null}>Select a door</option>
-                  {availableDoors.map((door, index) => {
-                    const matchingDescription = doorDescription.find((desc) => desc.id === door);
+                      return (
+                        <option key={index} value={door}>
+                          {matchingDescription.doorDescription}
+                        </option>
+                      )
+                    })}
+                  </select>
+                )}
+              </div>
 
-                    return (
-                      <option key={index} value={door}>
-                        {matchingDescription.doorDescription}
-                      </option>
-                    )
-                  })}
-                </select>
-              )}
-            </div>
-
-            <div class="autocomplete-wrapper">
-              <input
-                type="text"
-                placeholder="To"
-                onChange={handleEndChange}
-                name="end"
-                value={formData.end}
-              />
-              {isEndVisible && formData.end ? (
-                <div class="dropdown active">
-                  <ul className="autocomplete-list">
-                    <div class="dropdown-content">
-                      {filteredHallsTo.length > 0 ? (
-                        filteredHallsTo.map((hall, index) => (
-                          <div
-                            key={index}
-                            onClick={() =>
-                              handleAutoCompleteChange(hall, "end")
-                            }
-                          >
-                            {hall.name}
-                          </div>
-                        ))
-                      ) : (
-                        <div>Nothing found</div>
-                      )}
-                    </div>
-                  </ul>
-                </div>
-              ) : null}
-            </div>
-
-            <div className="doors-dropdown">
-              {selectedEndLocation && availableDoors.length > 0 && (
-                <select>
-                  <option value="">Select a door</option>
-                  {availableDoors.map((door, index) => {
-                    const matchingDescription = doorDescription.find((desc) => desc.id === door);
-
-                    return (
-                      <option key={index} value={door}>
-                        {matchingDescription.doorDescription}
-                      </option>
-                    )
-                  })}
-                </select>
-              )}
-            </div>
-
-          </div>
-
-
-          <div className="clarify-info">
-            <div>Start: {startValue} - {startDoorId && doorDescription.find((desc) => desc.id === startDoorId).doorDescription} </div>
-            <div>Destination: {destinationValue}</div>
-          </div></div>
-        <WeatherRating weatherQuality={weatherQuality} setWeatherQuality={setWeatherQuality} />
-        <div className="button-container">
-          <button className="submit-button" onClick={showResultDiv}>
-            Submit
-          </button>
-        </div>
-      </div>
-
-      {showResult && (
-        <div className="result">
-          <div className="image-container">
-            <img
-              src={arrInfo[curLoc].image}
-              alt="pic"
-            />
-          </div>
-          <div className="pop-up-container">
-            <div className="info-text"><FontAwesomeIcon icon={faExclamationCircle} /> You can scroll the image for more info</div>
-            <div className="button-container">
-              {
-                curLoc === 0 ?
-                  <div className="status-text starting">Start</div>
-                  :
-                  <button className="button-in-container" onClick={() => changeLoc(false)}>Prev</button>
-              }
-              {
-                curLoc === arrInfo.length - 1 ?
-                  <div className="status-text arrived">You are here!</div>
-                  :
-                  <button className="button-in-container" onClick={() => changeLoc(true)}>Next</button>
-              }
-            </div>
-            <div className="details">
-              {arrInfo[curLoc].textDescription ?? ""}
-            </div>
-            <div className="info-title">INFORMATION</div>
-            <div className="info-container">
-              <div className="info">
-                <div className="info-left">
-                  <span className="label">Distance</span>
-                  <span className="value">{remDist[curLoc]} m</span>
-                </div>
-
-                <div className="info-right">
-                  <span className="label">ETA (<FontAwesomeIcon icon={faPersonWalking} />)</span>
-                  <span className="value">{getETA(Math.ceil(remDist[curLoc] / 1.25))}</span>
-                </div>
-
-                <div className="info-right">
-                  <span className="label">ETA (<FontAwesomeIcon icon={faPersonRunning} />)</span>
-                  <span className="value">{getETA(Math.ceil(remDist[curLoc] / 2.25))}</span>
-                </div>
+              <div class="autocomplete-wrapper">
+                <input
+                  type="text"
+                  placeholder="To"
+                  onChange={handleEndChange}
+                  name="end"
+                  value={formData.end}
+                />
+                {isEndVisible && formData.end ? (
+                  <div class="dropdown active">
+                    <ul className="autocomplete-list">
+                      <div class="dropdown-content">
+                        {filteredHallsTo.length > 0 ? (
+                          filteredHallsTo.map((hall, index) => (
+                            <div
+                              key={index}
+                              onClick={() =>
+                                handleAutoCompleteChange(hall, "end")
+                              }
+                            >
+                              {hall.name}
+                            </div>
+                          ))
+                        ) : (
+                          <div>Nothing found</div>
+                        )}
+                      </div>
+                    </ul>
+                  </div>
+                ) : null}
               </div>
             </div>
-            <button className="button-find-another" onClick={() => setShowResult(false)}>Find another route</button>
+
+
+            <div className="clarify-info">
+              <div className="clarify-info-text">
+                <b>Start</b>
+                <br />
+                {startValue}
+                <br />
+                {startDoorId && doorDescription.find((desc) => desc.id === startDoorId).doorDescription} </div>
+              <div className="clarify-info-text"
+              ><b>Destination</b> <br />{destinationValue}</div>
+            </div></div>
+          <WeatherRating weatherQuality={weatherQuality} setWeatherQuality={setWeatherQuality} />
+          <div className="button-container">
+            <button className="submit-button" onClick={showResultDiv}>
+              Submit
+            </button>
           </div>
-        </div>
-      )}
+        </div >
+      }
+
+      {
+        showResult && (
+          <div className="result">
+            <div className="image-container">
+              <img
+                src={arrInfo[curLoc].image}
+                alt="pic"
+              />
+            </div>
+            <div className="pop-up-container">
+              <div className="info-text"><FontAwesomeIcon icon={faExclamationCircle} /> You can scroll the image for more info</div>
+              <div className="button-container">
+                {
+                  curLoc === 0 ?
+                    <div className="status-text starting">Start</div>
+                    :
+                    <button className="button-in-container" onClick={() => changeLoc(false)}>Prev</button>
+                }
+                {
+                  curLoc === arrInfo.length - 1 ?
+                    <div className="status-text arrived">You are here!</div>
+                    :
+                    <button className="button-in-container" onClick={() => changeLoc(true)}>Next</button>
+                }
+              </div>
+              <div className="details">
+                {arrInfo[curLoc].textDescription ?? ""}
+              </div>
+              <div className="info-title">INFORMATION</div>
+              <div className="info-container">
+                <div className="info">
+                  <div className="info-left">
+                    <span className="label">Distance</span>
+                    <span className="value">{remDist[curLoc]} m</span>
+                  </div>
+
+                  <div className="info-right">
+                    <span className="label">ETA (<FontAwesomeIcon icon={faPersonWalking} />)</span>
+                    <span className="value">{getETA(Math.ceil(remDist[curLoc] / 1.25))}</span>
+                  </div>
+
+                  <div className="info-right">
+                    <span className="label">ETA (<FontAwesomeIcon icon={faPersonRunning} />)</span>
+                    <span className="value">{getETA(Math.ceil(remDist[curLoc] / 2.25))}</span>
+                  </div>
+                </div>
+              </div>
+              <button className="button-find-another" onClick={() => setShowResult(false)}>Find another route</button>
+            </div>
+          </div>
+        )
+      }
     </>
   );
 }
