@@ -1,13 +1,17 @@
+import hallsData from "./utils/halls.json";
 import "./App.css";
 import React, { useEffect, useRef, useState } from "react";
+import "./mediaqueries.css";
 
 function App() {
+  const [arrInfo, setArrInfo] = useState([{}]);
+  const [showResult, setShowResult] = useState(false);
+  const [isSuggestionsVisible, setIsSuggestionsVisible] = useState(false);
+
   const [formData, setFormData] = React.useState({
     start: "",
     end: "",
   });
-
-  const [showResult, setShowResult] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,7 +19,21 @@ function App() {
       ...formData,
       [name]: value,
     });
+    setIsSuggestionsVisible(!!value);
   };
+
+  const handleAutoCompleteChange = (e) => {
+    const value = e.value; 
+    setFormData({
+      ...formData,
+      start: value, 
+    });
+    setIsSuggestionsVisible(false);
+  };
+
+  const filteredHalls = hallsData.filter((hall) =>
+    hall.name.toLowerCase().includes(formData.start.toLowerCase())
+  );
 
   const descriptionRef = useRef(null);
   useEffect(() => {
@@ -28,10 +46,26 @@ function App() {
   };
 
   const showResultDiv = () => {
+    var dirRequest = {
+      startId: "10",
+      endId: "12",
+    };
+    // turn on loading indicator
+    fetch("https://us-central1-rocmap.cloudfunctions.net/findDirection", {
+      method: "POST",
+      body: JSON.stringify(dirRequest),
+    }).then(async (res) => {
+      // turn off loading indicator
+      const processed = await res.json();
+      if (!res.ok) {
+        alert("Something happened when contacting backend!");
+        return;
+      }
+      setArrInfo(processed.response);
+      alert(JSON.stringify(processed.response));
+    });
     setShowResult(!showResult);
   };
-  
-  
 
   return (
     <>
@@ -47,7 +81,6 @@ function App() {
             Find the most optimal path in UR campus
           </p>
 
-  
           <button className="scroll-button" onClick={scrollDown}>
             Explore Now
           </button>
@@ -64,7 +97,29 @@ function App() {
               onChange={handleChange}
               name="start"
               value={formData.start}
+              onFocus={() => setIsSuggestionsVisible(!!formData.start)}
+              onBlur={() => setIsSuggestionsVisible(false)}
             />
+            {isSuggestionsVisible ? (
+              <div class="dropdown">
+              <ul className="autocomplete-list">
+                <div class="dropdown-content">
+                {filteredHalls.length > 0 ? (
+                  filteredHalls.map((hall, index) => (
+                    <li
+                      key={index}
+                      onClick={() => handleAutoCompleteChange(hall.name)}
+                    >
+                      {hall.name}
+                    </li>
+                  ))
+                ) : (
+                  <li>Nothing found</li>
+                )}
+                </div>
+              </ul>
+              </div>
+            ) : null}
             <input
               type="text"
               placeholder="To"
@@ -74,7 +129,7 @@ function App() {
             />
           </div>
           <div className="button-container">
-            <button className="submit-button scroll-button" onClick={showResultDiv}>
+            <button className="submit-button" onClick={showResultDiv}>
               Submit
             </button>
           </div>
@@ -83,26 +138,42 @@ function App() {
 
       {showResult && (
         <div className="result">
-          <div className="info-container">
-            <div className="info">
-              <div className="info-left">
-                <span className="label">Distance</span>
-                <span className="value">100 km</span>
-              </div>
-
-              <div className="info-right  info-box">
-                <span className="label">Time approximately</span>
-                <span className="value">2 hours</span>
-              </div>
-            </div>
+          <div className="image-container">
+            {arrInfo.length > 0 ? (
+              <img
+                src={arrInfo[0].image}
+                alt="pic"
+                style={{ objectFit: "cover", width: "100%", height: "100%" }}
+              />
+            ) : (
+              <p>No image available</p>
+            )}
           </div>
 
-          <div className="image-container">Image goes here</div>
+          <div className="pop-up-container">
+            <div className="button-container">
+              <button className="button-in-container">Prev</button>
 
-          <div className="button-container">
-            <button>Prev</button>
+              <button className="button-in-container">Next</button>
+            </div>
+            <div className="details">
+              <span className="description-label">Description:</span> write
+              something here
+            </div>
+            <div className="info-title">INFORMATION</div>
+            <div className="info-container">
+              <div className="info">
+                <div className="info-left">
+                  <span className="label">Distance</span>
+                  <span className="value">{arrInfo[0].dist}</span>
+                </div>
 
-            <button>Next</button>
+                <div className="info-right">
+                  <span className="label">ETA</span>
+                  <span className="value">1 min</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
