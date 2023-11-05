@@ -33,14 +33,14 @@ def load_data(data_dir):
     return (graph, edges_dict)
 
 
-def find_shortest_path(start_id, end_id, graph, edges_dict):
+def find_shortest_path(start_id, end_id, graph, edges_dict, weather):
     heap = []
 
     for edge_id in graph[start_id]:
-        heap.append((edges_dict[edge_id]["distance"], [edge_id]))
+        heap.append((get_weighted_distance(edges_dict[edge_id], weather), [edge_id]))
 
     heapify(heap)
-
+    seen = set()
     while len(heap) != 0:
         top = heappop(heap)
         dist = top[0]
@@ -50,8 +50,29 @@ def find_shortest_path(start_id, end_id, graph, edges_dict):
             return top
 
         for edge_id in graph[cur_id]:
+            if edge_id in seen:
+                continue
+            seen.add(edge_id)
             new_path = list(path)
             new_path.insert(0, edge_id)
-            heappush(heap, (dist + edges_dict[edge_id]["distance"], new_path))
+            heappush(
+                heap,
+                (dist + get_weighted_distance(edges_dict[edge_id], weather), new_path),
+            )
 
     return []
+
+
+n_weights = [5, 10, 15, 20]
+p_weights = [0.1, 0.5, 0.75, 1]
+
+
+# 0, 1, 2, 3, 4 mode of weather
+def get_weighted_distance(edge, w):
+    og = edge["distance"]
+    weather = min(3, w)
+    if weather == 0 or "isInside" in edge and edge["isInside"] is True:
+        return og
+    if og <= 20:
+        return og + n_weights[weather]
+    return og * (1 + p_weights[weather])
