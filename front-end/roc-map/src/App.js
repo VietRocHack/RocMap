@@ -3,7 +3,8 @@ import "./App.css";
 import React, { useEffect, useRef, useState } from "react";
 import "./mediaqueries.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPersonRunning, faPersonWalking } from '@fortawesome/free-solid-svg-icons';
+import { faExclamationCircle, faPersonRunning, faPersonWalking } from '@fortawesome/free-solid-svg-icons';
+import WeatherRating from "./WeatherRating";
 
 function App() {
   const [arrInfo, setArrInfo] = useState([{}]);
@@ -11,6 +12,7 @@ function App() {
   const [isSuggestionsVisible, setIsSuggestionsVisible] = useState(false);
   const [curLoc, setCurLoc] = useState(0);
   const [remDist, setRemDist] = useState([]);
+  const [weatherQuality, setWeatherQuality] = useState(0); // Initial value of 3, which represents neutral weather quality
 
   const [formData, setFormData] = React.useState({
     start: "",
@@ -53,7 +55,7 @@ function App() {
     var dirRequest = {
       startDoorId: "10",
       endHallId: "4",
-      weather: 3,
+      weather: weatherQuality,
     };
     // turn on loading indicator
     fetch("https://us-central1-rocmap.cloudfunctions.net/findDirection", {
@@ -167,6 +169,7 @@ function App() {
               value={formData.end}
             />
           </div>
+          <WeatherRating weatherQuality={weatherQuality} setWeatherQuality={setWeatherQuality} />
           <div className="button-container">
             <button className="submit-button" onClick={showResultDiv}>
               Submit
@@ -183,8 +186,8 @@ function App() {
               alt="pic"
             />
           </div>
-
           <div className="pop-up-container">
+            <div className="info-text"><FontAwesomeIcon icon={faExclamationCircle} /> You can scroll the image for more info</div>
             <div className="button-container">
               <button className="button-in-container" onClick={() => changeLoc(false)}>Prev</button>
 

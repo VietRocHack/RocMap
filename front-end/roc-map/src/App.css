@@ -96,7 +96,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 35vh; 
+  /* height: 35vh;  */
   flex-direction: column;
   margin-bottom: 100px;
 }
@@ -136,6 +136,13 @@ input[type="text"] {
   justify-content: center;
   align-items: center;
   margin-top: 20px; 
+}
+
+.info-text {
+	padding-top: 10px;
+	font-size: small;
+	width: 100%;
+	text-align: center;
 }
 
 .info {
