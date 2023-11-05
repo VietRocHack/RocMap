@@ -57,6 +57,8 @@ function App() {
       endHallId: "4",
       weather: weatherQuality,
     };
+    setCurLoc(0);
+    setRemDist([]);
     // turn on loading indicator
     fetch("https://us-central1-rocmap.cloudfunctions.net/findDirection", {
       method: "POST",
@@ -194,7 +196,7 @@ function App() {
               <button className="button-in-container" onClick={() => changeLoc(true)}>Next</button>
             </div>
             <div className="details">
-              <span className="description-label">Description:</span> {arrInfo[curLoc].textDescription ?? ""}
+              {arrInfo[curLoc].textDescription ?? ""}
             </div>
             <div className="info-title">INFORMATION</div>
             <div className="info-container">

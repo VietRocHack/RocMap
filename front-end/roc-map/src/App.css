@@ -180,7 +180,9 @@ input[type="text"] {
   font-weight: 700;
   font-size: 21px;
   margin-bottom: 30px; 
+	text-align: center;
 }
+
 
 /* ____IMAGE_____ */
 
