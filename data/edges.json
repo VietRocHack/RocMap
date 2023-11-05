@@ -4,7 +4,7 @@
         "startId": "1",
         "endId": "2",
         "image": "1-2.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way and you are at Dewey Hall.",
         "distance": 14
     },
     {
@@ -12,7 +12,7 @@
         "startId": "1",
         "endId": "3",
         "image": "1-3.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way and you are at Lattimore Hall.",
         "distance": 14
     },
     {
@@ -28,7 +28,7 @@
         "startId": "2",
         "endId": "3",
         "image": "2-3.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way and you are at Lattimore Hall.",
         "distance": 20
     },
     {
@@ -36,7 +36,7 @@
         "startId": "2",
         "endId": "4",
         "image": "2-4.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way about 10 meters until reaching the intersection.",
         "distance": 10
     },
     {
@@ -44,7 +44,7 @@
         "startId": "2",
         "endId": "5",
         "image": "2-5.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way until reaching the bench.",
         "distance": 14
     },
     {
@@ -69,7 +69,7 @@
         "startId": "3",
         "endId": "2",
         "image": "3-2.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way and you are at Dewey Hall.",
         "distance": 20
     },
     {
@@ -77,7 +77,7 @@
         "startId": "3",
         "endId": "5",
         "image": "3-5.png",
-        "textDescription": "Go straight the right pathway.",
+        "textDescription": "Go straight the right pathway until reaching the bench.",
         "distance": 14
     },
     {
@@ -85,7 +85,7 @@
         "startId": "3",
         "endId": "6",
         "image": "3-6.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way about 10 meters until reaching the intersection.",
         "distance": 10
     },
     {
@@ -102,7 +102,7 @@
         "startId": "4",
         "endId": "2",
         "image": "4-2.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way and you are at Dewey Hall.",
         "distance": 10
     },
     {
@@ -110,7 +110,7 @@
         "startId": "4",
         "endId": "5",
         "image": "4-5.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way until reaching the bench.",
         "distance": 10
     },
     {
@@ -118,7 +118,7 @@
         "startId": "4",
         "endId": "7",
         "image": "4-7.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way and you are at Bausch & Lomb Hall.",
         "distance": 10
     },
     {
@@ -126,7 +126,7 @@
         "startId": "5",
         "endId": "2",
         "image": "5-2.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way and you are at Dewey Hall.",
         "distance": 14
     },
     {
@@ -134,7 +134,7 @@
         "startId": "5",
         "endId": "3",
         "image": "5-3.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way and you are at Lattimore Hall.",
         "distance": 14
     },
     {
@@ -142,7 +142,7 @@
         "startId": "5",
         "endId": "4",
         "image": "5-4.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way until reaching the intersection.",
         "distance": 10
     },
     {
@@ -150,7 +150,7 @@
         "startId": "5",
         "endId": "6",
         "image": "5-6.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way until reaching the statu.",
         "distance": 10
     },
     {
@@ -158,7 +158,7 @@
         "startId": "5",
         "endId": "7",
         "image": "5-7.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way and you are at Bausch & Lomb Hall.",
         "distance": 14
     },
     {
@@ -166,7 +166,7 @@
         "startId": "5",
         "endId": "8",
         "image": "5-8.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way and you are at Morey Hall.",
         "distance": 14
     },
     {
@@ -174,7 +174,7 @@
         "startId": "6",
         "endId": "3",
         "image": "6-3.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way and you are at Lattimore Hall.",
         "distance": 10
     },
     {
@@ -182,7 +182,7 @@
         "startId": "6",
         "endId": "5",
         "image": "6-5.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way until reaching the bench.",
         "distance": 10
     },
     {
@@ -190,7 +190,7 @@
         "startId": "6",
         "endId": "8",
         "image": "6-8.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way and you are at Morey Hall.",
         "distance": 10
     },
     {
@@ -198,7 +198,7 @@
         "startId": "7",
         "endId": "4",
         "image": "7-4.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way until reaching the intersection.",
         "distance": 10
     },
     {
@@ -206,7 +206,7 @@
         "startId": "7",
         "endId": "5",
         "image": "7-5.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way until reaching the bench.",
         "distance": 14
     },
     {
@@ -214,7 +214,7 @@
         "startId": "7",
         "endId": "8",
         "image": "7-8.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way and you are at Morey Hall.",
         "distance": 20
     },
     {
@@ -230,7 +230,7 @@
         "startId": "7",
         "endId": "10",
         "image": "7-10.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way and you are at Rush Rhees.",
         "distance": 14
     },
     {
@@ -247,7 +247,7 @@
         "startId": "8",
         "endId": "5",
         "image": "8-5.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way until reaching the bench.",
         "distance": 14
     },
     {
@@ -255,7 +255,7 @@
         "startId": "8",
         "endId": "6",
         "image": "8-6.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way until reaching the intersection.",
         "distance": 10
     },
     {
@@ -263,7 +263,7 @@
         "startId": "8",
         "endId": "7",
         "image": "8-7.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way and you are at Bausch & Lomb Hall.",
         "distance": 20
     },
     {
@@ -271,7 +271,7 @@
         "startId": "8",
         "endId": "10",
         "image": "8-10.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way and you are at Rush Rhees.",
         "distance": 14
     },
     {
@@ -296,7 +296,7 @@
         "startId": "9",
         "endId": "7",
         "image": "9-7.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way and you are at Bausch & Lomb Hall.",
         "distance": 10
     },
     {
@@ -304,14 +304,14 @@
         "startId": "9",
         "endId": "10",
         "image": "9-10.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way and you are at Rush Rhees.",
         "distance": 10
     },{
         "id": "10-7",
         "startId": "10",
         "endId": "7",
         "image": "10-7.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way and you are at Bausch & Lomb Hall.",
         "distance": 14
     },
     {
@@ -319,7 +319,7 @@
         "startId": "10",
         "endId": "8",
         "image": "10-8.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way and you are at Morey Hall.",
         "distance": 14
     },
     {
@@ -352,7 +352,7 @@
         "startId": "11",
         "endId": "8",
         "image": "11-8.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way and you are in Morey Hall.",
         "distance": 10
     },
     {
@@ -360,7 +360,7 @@
         "startId": "11",
         "endId": "10",
         "image": "11-10.png",
-        "textDescription": "Go straight this way.",
+        "textDescription": "Go straight this way and you are in Rush Rhees.",
         "distance": 10
     },
 
@@ -415,7 +415,7 @@
         "startId": "14",
         "endId": "7",
         "image": "14-7.png",
-        "textDescription": "Go up the stairs.",
+        "textDescription": "Go up the stairs. You are in Bausch & Lomb Hall.",
         "distance": 15
     },
     {
@@ -442,7 +442,7 @@
         "startId": "15",
         "endId": "14",
         "image": "15-14.png",
-        "textDescription": "Facing the wall, then take the right to go up the staircases then through the door.",
+        "textDescription": "Facing the wall, then take the right to go up the staircases then through the door. You are in Bausch & Lomb Hall.",
         "distance": 5
     },
     {
@@ -469,7 +469,7 @@
         "startId": "16",
         "endId": "17",
         "image": "16-17.png",
-        "textDescription": "Go straight until reaching the intersection.",
+        "textDescription": "Go straight until reaching the intersection. You are in Rush Rhees.",
         "distance": 8
     },
     {
@@ -478,7 +478,7 @@
         "startId": "17",
         "endId": "10",
         "image": "17-10.png",
-        "textDescription": "Go up the stairs.",
+        "textDescription": "Go up the stairs. You are in Rush Rhees.",
         "distance": 15
     },
     {
@@ -505,7 +505,7 @@
         "startId": "18",
         "endId": "17",
         "image": "18-17.png",
-        "textDescription": "Facing the wall, then take the left, going straight until reaching the intersection.",
+        "textDescription": "Facing the wall, then take the left, going straight until reaching the intersection. You are in Rush Rhees.",
         "distance": 8
     },
     {
@@ -514,7 +514,7 @@
         "startId": "18",
         "endId": "19",
         "image": "18-19.png",
-        "textDescription": "Facing the wall, then take the right and go through the door.",
+        "textDescription": "Facing the wall, then take the right and go through the door. You are in Morey Hall.",
         "distance": 5
     },
     {
@@ -523,7 +523,7 @@
         "startId": "19",
         "endId": "8",
         "image": "19-8.png",
-        "textDescription": "Go up the stairs.",
+        "textDescription": "Go up the stairs. You are in Morey Hall.",
         "distance": 15
     },
     {
@@ -577,7 +577,7 @@
         "startId": "21",
         "endId": "3",
         "image": "21-3.png",
-        "textDescription": "Go up the stairs.",
+        "textDescription": "Go up the stairs. You are in Lattimore Hall.",
         "distance": 15
     },
     {
