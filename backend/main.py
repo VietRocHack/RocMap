@@ -1,21 +1,15 @@
-import functions_framework
+from flask import Flask, request, jsonify
 import direction
 import json
+
+app = Flask(__name__)
 
 headers = {"Access-Control-Allow-Origin": "*"}
 
 
-@functions_framework.http
-def find_direction(request):
-    """HTTP Cloud Function.
-    Args:
-        request (flask.Request): The request object.
-        <https://flask.palletsprojects.com/en/1.1.x/api/#incoming-request-data>
-    Returns:
-        The response text, or any set of values that can be turned into a
-        Response object using `make_response`
-        <https://flask.palletsprojects.com/en/1.1.x/api/#flask.make_response>.
-    """
+@app.route('/api/find_direction', methods=['POST'])
+def find_direction():
+    """Handle the find direction request."""
     body_data = request.get_data()
     request_json = json.loads(body_data)
 
@@ -36,7 +30,7 @@ def find_direction(request):
 
     detailed_path = get_detailed_path(path, edges_dict)
 
-    return ({"response": detailed_path}, 200, headers)
+    return jsonify({"response": detailed_path}), 200, headers
 
 
 def get_image_url(raw):
@@ -55,3 +49,7 @@ def get_detailed_path(path, edges_dict):
         detailed_path.append(edge_data)
 
     return detailed_path
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
