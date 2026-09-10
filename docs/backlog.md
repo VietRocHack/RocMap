@@ -38,3 +38,12 @@ Seeded 2026-09-09 during the re-hosting of RocMap onto `vietrochack-lab` (see
   Federation, no stored key) for manual and automatic redeploys
 - [x] Removed dead `front-end/roc-map/src/utils/fetchData.js` and the stray root
   `package.json` (unused `@syncfusion` dependency)
+
+## Phase 1 — cost safety net — done 2026-09-09
+
+- [x] GCP budget alert on `vietrochack-lab` ($10/month, 50/90/100% thresholds,
+  scoped to just this project) — see `docs/runbook.md`
+- [x] Artifact Registry cleanup policy on `gcf-artifacts` (keep 3 most recent
+  images, delete untagged after 1 day, delete anything older than 90 days) —
+  prevents CI-triggered deploys from silently accumulating storage cost over
+  time; see `docs/gcf-artifacts-cleanup-policy.json` and `docs/runbook.md`

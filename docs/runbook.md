@@ -88,10 +88,43 @@ No secrets needed at all for this workflow — that's the point of WIF.
 
 ## Ongoing (this deploy is meant to stay live indefinitely)
 
-- [ ] Set a GCP budget alert on `vietrochack-lab` (Billing → Budgets & alerts).
-      Unlike a hackathon judging demo, this deploy has no planned teardown date, so
-      a budget alert is the ongoing safety net instead of a one-time pre-judging
-      checklist item.
+- [x] GCP budget alert on `vietrochack-lab` (done 2026-09-09) — $10/month,
+      calendar-month period, scoped to just this project (`--filter-projects`,
+      so it doesn't fire on other projects sharing the same billing account),
+      alerts at 50%/90%/100% to the billing account's default IAM recipients
+      (Billing Account Admins/Users — includes `hochivuong2002@gmail.com`).
+      Recreate with:
+      ```bash
+      gcloud billing budgets create \
+        --billing-account=0117FA-0BC569-CCD7E4 \
+        --display-name="vietrochack-lab monthly budget" \
+        --budget-amount=10USD \
+        --calendar-period=month \
+        --filter-projects=projects/vietrochack-lab \
+        --threshold-rule=percent=0.5 \
+        --threshold-rule=percent=0.9 \
+        --threshold-rule=percent=1.0 \
+        --project=vietrochack-lab
+      ```
+      (`billingbudgets.googleapis.com` must be enabled on `vietrochack-lab`
+      first — `gcloud services enable billingbudgets.googleapis.com
+      --project=vietrochack-lab` — since `gcloud billing budgets create` uses
+      `--project` as its quota project, not a resource scope.) Raise the
+      $10 amount once more apps are actually running here and real spend
+      is expected.
+- [x] Artifact Registry cleanup policy on the `gcf-artifacts` repo (done
+      2026-09-09) — every `gcloud functions deploy` (including the one that
+      now runs on every push to `main` via GitHub Actions) builds a new
+      container image that Artifact Registry does NOT auto-delete on its own;
+      left unchecked this slowly accumulates storage cost. Policy: keep the 3
+      most recent image versions always (rollback safety), delete untagged
+      images after 1 day, delete anything (tagged or not) older than 90 days.
+      Recreate with:
+      ```bash
+      gcloud artifacts repositories set-cleanup-policies gcf-artifacts \
+        --project=vietrochack-lab --location=us-central1 \
+        --policy=docs/gcf-artifacts-cleanup-policy.json --no-dry-run
+      ```
 - [ ] Periodically check `gcloud functions describe rocmap-findDirection
       --project vietrochack-lab --region us-central1` and the Firebase Hosting
       console for the site are both still healthy.
