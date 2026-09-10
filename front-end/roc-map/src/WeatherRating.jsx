@@ -32,7 +32,7 @@ const WeatherRating = ({weatherQuality, setWeatherQuality}) => {
             checked={weatherQuality === 1}
             onChange={handleRatingChange}
           />
-          Hot outside
+          <span className="weather-quality-radio-group-button-text">Hot outside</span>
         </label>
         <label className="radio-button">
           <input
@@ -42,7 +42,7 @@ const WeatherRating = ({weatherQuality, setWeatherQuality}) => {
             checked={weatherQuality === 2}
             onChange={handleRatingChange}
           />
-          A bit chilly
+          <span className="weather-quality-radio-group-button-text">A bit chilly</span>
         </label>
         <label className="radio-button">
           <input
@@ -52,7 +52,7 @@ const WeatherRating = ({weatherQuality, setWeatherQuality}) => {
             checked={weatherQuality === 3}
             onChange={handleRatingChange}
           />
-          Pouring
+          <span className="weather-quality-radio-group-button-text">Pouring</span>
         </label>
         <label className="radio-button">
           <input
@@ -62,7 +62,7 @@ const WeatherRating = ({weatherQuality, setWeatherQuality}) => {
             checked={weatherQuality === 4}
             onChange={handleRatingChange}
           />
-          Freezing
+          <span className="weather-quality-radio-group-button-text">Freezing</span>
         </label>
 
         </div>

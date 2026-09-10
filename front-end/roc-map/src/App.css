@@ -16,6 +16,46 @@ html {
   width: 100%;
 }
 
+/* NAV */
+
+.site-header {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px 8px 8px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 2rem;
+  z-index: 100;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(-130%);
+  pointer-events: none;
+  transition: opacity 250ms ease, transform 250ms ease;
+}
+
+.site-header.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.site-header-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  display: block;
+}
+
+.site-header-text {
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
 /* TITLE */
 
 .background-container{
@@ -95,6 +135,14 @@ html {
   margin-bottom: 0;
 }
 
+.content,
+.result {
+  max-width: 1100px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 0 24px;
+}
+
 .form-container {
   display: flex;
   justify-content: center;
@@ -108,11 +156,13 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px; 
+  gap: 20px;
   border: 2px solid white;
-  padding: 20px; 
+  padding: 20px;
   border-radius: 15px;
   width: 500px;
+  max-width: 100%;
+  margin-bottom: 30px;
 }
 
 input[type="text"] {
@@ -176,6 +226,46 @@ input[type="text"] {
 }
 
 /**RESULT PART **/
+
+/* These used to only be declared inside mediaqueries.css's <=1200px block,
+   so anything wider than 1200px (real desktop monitors) rendered this
+   whole section with zero styling - no card background, no button colors,
+   no centering. Declaring the essential look here makes it apply at every
+   width; the <=1200px block still layers its narrow-screen-specific
+   tweaks (like widths) on top. */
+.clarify-info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.pop-up-container {
+	background-color: white;
+	box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+	padding: 10px 10px 40px 10px;
+	border-radius: 10px;
+	color: black;
+	position: relative;
+	z-index: 1;
+}
+
+.info-title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 23px;
+	font-weight: 900;
+}
+
+.button-in-container {
+	color: black;
+	border: black 0.13rem solid;
+}
+
+.button-find-another {
+	color: grey;
+	border: grey 0.13rem solid;
+}
 
 /*___DETAILS___*/
 .details {
@@ -263,6 +353,30 @@ submit-button:focus {
 	padding: 0 20px;
 }
 
+.placeholder-text {
+	color: rgb(150, 148, 148);
+	font-style: italic;
+	font-size: medium;
+}
+
+.hint-text {
+	color: rgb(200, 190, 120);
+	font-size: medium;
+}
+
+.error-text {
+	color: rgb(255, 120, 120);
+	text-align: center;
+	font-weight: 600;
+	max-width: 400px;
+	margin: 0 auto;
+}
+
+button:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
 .route {
 	width: 100%;
 	max-width: 600px;
@@ -279,4 +393,30 @@ submit-button:focus {
 	width: 50%;
 	color: black;
 	padding: 20px;
+}
+
+/* FOOTER */
+
+.site-footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	padding: 30px 20px 50px;
+	color: rgb(150, 148, 148);
+	font-size: 14px;
+}
+
+.site-footer a {
+	color: rgb(150, 148, 148);
+	text-decoration: none;
+}
+
+.site-footer a:hover {
+	color: white;
+	text-decoration: underline;
+}
+
+.site-footer-divider {
+	opacity: 0.6;
 }

@@ -164,8 +164,10 @@
 /* Style for the dropdown container */
 .dropdown {
   position: absolute;
-  top:100%;
+  top: 100%;
   left: 0;
+  margin-top: 6px;
+  z-index: 20;
 }
 
 /* Style for the list */
@@ -210,4 +212,46 @@
 /* Show the dropdown content when the dropdown is open */
 .dropdown.active .dropdown-content {
   display: block;
+}
+
+/* DESKTOP / WIDE-SCREEN — this app was built mobile-first (the block above
+   handles <=1200px); these rules make better use of the extra width on
+   tablets-landscape and up instead of leaving it as one narrow stretched
+   mobile column. */
+@media (min-width: 900px) {
+  .result {
+    display: grid;
+    grid-template-columns: minmax(320px, 440px) 1fr;
+    grid-template-areas:
+      "route route"
+      "image info";
+    align-items: start;
+    column-gap: 40px;
+  }
+
+  .route-container {
+    grid-area: route;
+  }
+
+  .image-container {
+    grid-area: image;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .pop-up-container {
+    grid-area: info;
+  }
+
+  /* .info's base 50%-width rule assumed the old unstyled >1200px layout
+     where pop-up-container spanned the full page; in the grid layout above
+     it's confined to one column, so 50% is too cramped for three columns
+     of numbers - match the same 100% mobile already uses. */
+  .info {
+    width: 100%;
+  }
+
+  .button-find-another {
+    width: auto;
+  }
 }

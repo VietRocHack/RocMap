@@ -23,6 +23,8 @@ Seeded 2026-09-09 during the re-hosting of RocMap onto `vietrochack-lab` (see
   it starts changing often.
 - [ ] No automated tests for either `front-end/roc-map` or `backend/` — deploys are
   currently verified manually (see `docs/runbook.md`'s pre-deploy checklist).
+- [ ] `data/` and `front-end/roc-map/public/images/` are also two separate copies
+  of the step images now, same manual-sync caveat as the JSON data above.
 
 ## Phase 0 — re-hosting onto `vietrochack-lab` — done 2026-09-09
 
@@ -47,3 +49,33 @@ Seeded 2026-09-09 during the re-hosting of RocMap onto `vietrochack-lab` (see
   images, delete untagged after 1 day, delete anything older than 90 days) —
   prevents CI-triggered deploys from silently accumulating storage cost over
   time; see `docs/gcf-artifacts-cleanup-policy.json` and `docs/runbook.md`
+
+## Phase 2 — frontend polish (desktop responsiveness, bug fixes) — done 2026-09-09
+
+- [x] Real desktop layout: `.pop-up-container`/`.info-title`/`.clarify-info`/
+  `.button-in-container` had zero styling above 1200px (only ever declared
+  inside the mobile media query) — moved to base `App.css` so they render at
+  every width
+- [x] Two-column result grid + row-layout weather pills at `min-width: 900px`,
+  centered `max-width: 1100px` content column at every width
+- [x] Fixed a real crash risk (`showResultDiv` reading `selectedEndLocation.id`
+  with no guard) — Submit is now disabled until the form is actually complete
+- [x] Fixed the "result flashes empty before data arrives" bug + added a real
+  loading state and inline error handling (previously a bare `alert()`, and
+  only on the `!res.ok` path — network failures were unhandled)
+- [x] Fixed stale `startDoorId` surviving a changed "From" selection
+- [x] Fixed 4 `class=`/`className=` React warnings
+- [x] "Find another route" now fully resets form/selection state instead of
+  only toggling the view
+- [x] Empty "Start"/"Destination" now show a "Not selected yet" placeholder
+  instead of rendering blank
+- [x] Weather rating radios restyled as pill buttons matching the app's
+  existing button look, replacing bare browser-default radios
+- [x] VietRocHack `icon.svg` wired up as the real favicon and a small
+  persistent top-left nav header (fades in past the hero, click to scroll to
+  top)
+- [x] Added a site footer (copyright + vietrochack.com + Devpost links) —
+  intended as a standard for future VietRocHack subdomain apps too
+- [x] Fixed local `npm start` (broken since the API URL became relative) via
+  a `proxy` field in `package.json`; added `.claude/launch.json`
+- [x] Wrote a real root `README.md`

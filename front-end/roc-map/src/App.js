@@ -5,8 +5,10 @@ import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
 import "./mediaqueries.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExclamationCircle, faPersonRunning, faPersonWalking, faLocationDot, faFlag } from '@fortawesome/free-solid-svg-icons';
+import { faExclamationCircle, faPersonRunning, faPersonWalking, faLocationDot, faFlag, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import WeatherRating from "./WeatherRating";
+
+const emptyFormData = { start: "", end: "" };
 
 function App() {
   const [arrInfo, setArrInfo] = useState([{}]);
@@ -16,14 +18,10 @@ function App() {
   const [curLoc, setCurLoc] = useState(0);
   const [remDist, setRemDist] = useState([]);
   const [weatherQuality, setWeatherQuality] = useState(0); // Initial value of 3, which represents neutral weather quality
-  const [formData, setFormData] = React.useState({
-    start: "",
-    end: "",
-  });
+  const [formData, setFormData] = useState(emptyFormData);
 
   const [startValue, setStartValue] = useState("");
   const [destinationValue, setDestinationValue] = useState("");
-
 
   // Inside your component function
   const [filteredHallsFrom, setFilteredHallsFrom] = useState([]);
@@ -34,7 +32,25 @@ function App() {
   const [availableDoors, setAvailableDoors] = useState([]);
 
   const [startDoorId, setStartDoorId] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [headerVisible, setHeaderVisible] = useState(false);
 
+  // Small persistent nav bar so people don't lose track of where they are
+  // once they've scrolled past the hero - fades in past it, click to jump
+  // back to the top.
+  useEffect(() => {
+    const handleScroll = () => {
+      setHeaderVisible(window.scrollY > window.innerHeight * 0.9);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const handleStartChange = (e) => {
     const { value } = e.target;
@@ -48,6 +64,11 @@ function App() {
         hall.name.toLowerCase().includes(value.toLowerCase())
       )
     );
+    // Typing again invalidates whatever was picked before, so a stale
+    // selection can't get submitted alongside newly-typed text.
+    setSelectedStartLocation(null);
+    setAvailableDoors([]);
+    setStartDoorId(null);
   };
 
   const handleEndChange = (e) => {
@@ -62,6 +83,7 @@ function App() {
         hall.name.toLowerCase().includes(value.toLowerCase())
       )
     );
+    setSelectedEndLocation(null);
   };
 
   const handleAutoCompleteChange = (hall, field) => {
@@ -69,6 +91,7 @@ function App() {
       ...prevFormData,
       [field]: hall.name,
     }));
+    setErrorMessage("");
 
     if (field === "start") {
       setStartValue(hall.name);
@@ -88,6 +111,7 @@ function App() {
       } else {
         setAvailableDoors([]);
       }
+      setStartDoorId(null);
     }
   };
 
@@ -101,42 +125,77 @@ function App() {
     resultRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
+  const needsDoorSelection = availableDoors.length > 0;
+  const canSubmit =
+    !!selectedStartLocation &&
+    !!selectedEndLocation &&
+    (!needsDoorSelection || !!startDoorId) &&
+    !isLoading;
+
   const showResultDiv = () => {
-    var dirRequest = {
+    if (!canSubmit) {
+      return;
+    }
+
+    const dirRequest = {
       startDoorId: startDoorId,
       endHallId: selectedEndLocation.id,
       weather: weatherQuality,
     };
-    setCurLoc(0);
-    setRemDist([]);
-    // turn on loading indicator
+
+    setIsLoading(true);
+    setErrorMessage("");
+
     fetch("/api/findDirection", {
       method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(dirRequest),
-    }).then(async (res) => {
-      // turn off loading indicator
-      const processed = await res.json();
-      if (!res.ok) {
-        alert("Something happened when contacting backend!");
-        return;
-      }
-      const path = processed.response;
-      setArrInfo(processed.response.reverse());
+    })
+      .then(async (res) => {
+        const processed = await res.json();
+        if (!res.ok) {
+          throw new Error("backend error");
+        }
 
-      let totalDist = 0;
-      for (const p of path) {
-        totalDist += p.dist * 2;
-      }
-      let remDist = [];
-      for (const p of path) {
-        remDist.push(totalDist);
-        totalDist -= p.dist * 2;
-      }
+        const path = processed.response.reverse();
+        setArrInfo(path);
 
-      setRemDist(remDist);
+        let totalDist = 0;
+        for (const p of path) {
+          totalDist += p.dist * 2;
+        }
+        const remDistances = [];
+        for (const p of path) {
+          remDistances.push(totalDist);
+          totalDist -= p.dist * 2;
+        }
+        setRemDist(remDistances);
+        setCurLoc(0);
+        setShowResult(true);
+      })
+      .catch(() => {
+        setErrorMessage(
+          "Couldn't find that route — check your connection and try again."
+        );
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
-    });
-    setShowResult(!showResult);
+  const resetSearch = () => {
+    setShowResult(false);
+    setFormData(emptyFormData);
+    setStartValue("");
+    setDestinationValue("");
+    setSelectedStartLocation(null);
+    setSelectedEndLocation(null);
+    setAvailableDoors([]);
+    setStartDoorId(null);
+    setArrInfo([{}]);
+    setRemDist([]);
+    setCurLoc(0);
+    setErrorMessage("");
   };
 
   const changeLoc = (increase) => {
@@ -162,12 +221,19 @@ function App() {
 
   return (
     <>
+      <header
+        className={`site-header ${headerVisible ? "visible" : ""}`}
+        onClick={scrollToTop}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") scrollToTop();
+        }}
+      >
+        <img src="/icon.svg" alt="" className="site-header-icon" />
+        <span className="site-header-text">RocMap</span>
+      </header>
       <div className="background-container">
-        {/* <div className="top-container">
-          <div className="left-section"></div>
-          <div className="middle-section">DandyHack'</div>
-          <div className="right-section">Nov 5th 2023</div>
-        </div> */}
         <div className="title">
           <p className="title-text">RocMap</p>
           <p ref={descriptionRef} className="sub-title">
@@ -185,7 +251,7 @@ function App() {
           <p className="form-description"> Where do you want to go? </p>
           <div className="form-container">
             <div className="input-container">
-              <div class="autocomplete-wrapper">
+              <div className="autocomplete-wrapper">
                 <input
                   type="text"
                   placeholder="From"
@@ -194,9 +260,9 @@ function App() {
                   value={formData.start}
                 />
                 {isStartVisible && formData.start ? (
-                  <div class="dropdown active">
+                  <div className="dropdown active">
                     <ul className="autocomplete-list">
-                      <div class="dropdown-content">
+                      <div className="dropdown-content">
                         {filteredHallsFrom.length > 0 ? (
                           filteredHallsFrom.map((hall, index) => (
                             <div
@@ -209,7 +275,7 @@ function App() {
                             </div>
                           ))
                         ) : (
-                          <div>Nothing found</div>
+                          <div className="nothing-found">Nothing found</div>
                         )}
                       </div>
                     </ul>
@@ -219,10 +285,13 @@ function App() {
 
               <div className="doors-dropdown">
                 {selectedStartLocation && availableDoors.length > 0 && (
-                  <select onChange={(event) => {
-                    setStartDoorId(event.target.value);
-                  }}>
-                    <option value={null}>Select a door</option>
+                  <select
+                    value={startDoorId ?? ""}
+                    onChange={(event) => {
+                      setStartDoorId(event.target.value || null);
+                    }}
+                  >
+                    <option value="">Select a door</option>
                     {availableDoors.map((door, index) => {
                       const matchingDescription = doorDescription.find((desc) => desc.id === door);
 
@@ -236,7 +305,7 @@ function App() {
                 )}
               </div>
 
-              <div class="autocomplete-wrapper">
+              <div className="autocomplete-wrapper">
                 <input
                   type="text"
                   placeholder="To"
@@ -245,9 +314,9 @@ function App() {
                   value={formData.end}
                 />
                 {isEndVisible && formData.end ? (
-                  <div class="dropdown active">
+                  <div className="dropdown active">
                     <ul className="autocomplete-list">
-                      <div class="dropdown-content">
+                      <div className="dropdown-content">
                         {filteredHallsTo.length > 0 ? (
                           filteredHallsTo.map((hall, index) => (
                             <div
@@ -260,7 +329,7 @@ function App() {
                             </div>
                           ))
                         ) : (
-                          <div>Nothing found</div>
+                          <div className="nothing-found">Nothing found</div>
                         )}
                       </div>
                     </ul>
@@ -269,21 +338,41 @@ function App() {
               </div>
             </div>
 
-
             <div className="clarify-info">
               <div className="clarify-info-text">
                 <b>Start</b>
                 <br />
-                {startValue}
-                <br />
-                {startDoorId && doorDescription.find((desc) => desc.id === startDoorId).doorDescription} </div>
-              <div className="clarify-info-text"
-              ><b>Destination</b> <br />{destinationValue}</div>
-            </div></div>
+                {startValue ? (
+                  <>
+                    {startValue}
+                    <br />
+                    {startDoorId ? (
+                      doorDescription.find((desc) => desc.id === startDoorId)?.doorDescription
+                    ) : needsDoorSelection ? (
+                      <span className="hint-text">Pick a door above</span>
+                    ) : null}
+                  </>
+                ) : (
+                  <span className="placeholder-text">Not selected yet</span>
+                )}
+              </div>
+              <div className="clarify-info-text">
+                <b>Destination</b> <br />
+                {destinationValue || <span className="placeholder-text">Not selected yet</span>}
+              </div>
+            </div>
+          </div>
           <WeatherRating weatherQuality={weatherQuality} setWeatherQuality={setWeatherQuality} />
+          {errorMessage && <p className="error-text">{errorMessage}</p>}
           <div className="button-container">
-            <button className="submit-button" onClick={showResultDiv}>
-              Submit
+            <button className="submit-button" onClick={showResultDiv} disabled={!canSubmit}>
+              {isLoading ? (
+                <>
+                  <FontAwesomeIcon icon={faSpinner} spin /> Finding route…
+                </>
+              ) : (
+                "Submit"
+              )}
             </button>
           </div>
         </div >
@@ -347,11 +436,21 @@ function App() {
                   </div>
                 </div>
               </div>
-              <button className="button-find-another" onClick={() => setShowResult(false)}>Find another route</button>
+              <button className="button-find-another" onClick={resetSearch}>Find another route</button>
             </div>
           </div>
         )
       }
+
+      <footer className="site-footer">
+        <a href="https://vietrochack.com" target="_blank" rel="noopener noreferrer">
+          &copy; {new Date().getFullYear()} VietRocHack
+        </a>
+        <span className="site-footer-divider">&middot;</span>
+        <a href="https://devpost.com/software/rocmap" target="_blank" rel="noopener noreferrer">
+          View on Devpost
+        </a>
+      </footer>
     </>
   );
 }

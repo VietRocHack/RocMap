@@ -1,5 +1,6 @@
 .weather-quality {
 	justify-content: center;
+	margin-top: 10px;
 }
 
 .weather-quality-text {
@@ -19,13 +20,52 @@
 .radio-group-buttons {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+	gap: 10px;
 }
 
 .radio-button {
-	height: 50px;
-	text-align: cetner;
+	display: inline-flex;
+	cursor: pointer;
+}
+
+.radio-button input[type="radio"] {
+	position: absolute;
+	opacity: 0;
+	width: 0;
+	height: 0;
 }
 
 .weather-quality-radio-group-button-text {
-	width: 100%;
+	display: inline-block;
+	padding: 10px 24px;
+	border: 1.5px solid rgba(255, 255, 255, 0.5);
+	border-radius: 2rem;
+	font-weight: 500;
+	transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+
+.radio-button input[type="radio"]:checked + .weather-quality-radio-group-button-text {
+	background-color: white;
+	color: black;
+	border-color: white;
+	font-weight: 700;
+}
+
+.radio-button input[type="radio"]:focus-visible + .weather-quality-radio-group-button-text {
+	outline: 2px solid white;
+	outline-offset: 2px;
+}
+
+.radio-button:hover .weather-quality-radio-group-button-text {
+	border-color: white;
+}
+
+@media (min-width: 900px) {
+	.radio-group-buttons {
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 10px 16px;
+	}
 }

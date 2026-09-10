@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "roc-map-frontend",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "front-end/roc-map", "start"],
+      "port": 3000
+    }
+  ]
+}
