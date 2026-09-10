@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "target": "rocmap",
+    "public": "front-end/roc-map/build",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "/api/**",
+        "function": {
+          "functionId": "rocmap-findDirection",
+          "region": "us-central1"
+        }
+      },
+      { "source": "**", "destination": "/index.html" }
+    ]
+  }
+}

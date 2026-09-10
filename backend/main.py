@@ -1,8 +1,11 @@
 import functions_framework
 import direction
 import json
+import os
 
 headers = {"Access-Control-Allow-Origin": "*"}
+
+DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 
 
 @functions_framework.http
@@ -23,7 +26,7 @@ def find_direction(request):
     end_hall_id = request_json["endHallId"]
     weather = 0 if "weather" not in request_json else request_json["weather"]
 
-    graph, edges_dict, halls_dict = direction.load_data("../data")
+    graph, edges_dict, halls_dict = direction.load_data(DATA_DIR)
 
     path = direction.find_shortest_path(
         start_door_id,
@@ -40,7 +43,7 @@ def find_direction(request):
 
 
 def get_image_url(raw):
-    return f"https://firebasestorage.googleapis.com/v0/b/rocmap.appspot.com/o/images%2F{raw}?alt=media"
+    return f"/images/{raw}"
 
 
 def get_detailed_path(path, edges_dict):

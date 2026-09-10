@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "vietrochack-lab"
+  },
+  "targets": {
+    "vietrochack-lab": {
+      "hosting": {
+        "rocmap": [
+          "vietrochack-rocmap"
+        ]
+      }
+    }
+  }
+}

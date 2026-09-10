@@ -110,7 +110,7 @@ function App() {
     setCurLoc(0);
     setRemDist([]);
     // turn on loading indicator
-    fetch("https://us-central1-rocmap.cloudfunctions.net/findDirection", {
+    fetch("/api/findDirection", {
       method: "POST",
       body: JSON.stringify(dirRequest),
     }).then(async (res) => {
