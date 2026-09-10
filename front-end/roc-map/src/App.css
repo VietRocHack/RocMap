@@ -143,6 +143,15 @@ html {
   padding: 0 24px;
 }
 
+.content {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
 .form-container {
   display: flex;
   justify-content: center;
