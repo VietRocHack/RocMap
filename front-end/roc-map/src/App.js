@@ -35,6 +35,15 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [headerVisible, setHeaderVisible] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  const currentImage = arrInfo[curLoc]?.image;
+  // Reset the loading state whenever the step image actually changes
+  // (Prev/Next, or a fresh search), not just whenever curLoc happens to
+  // change back to the same value.
+  useEffect(() => {
+    setImageLoaded(false);
+  }, [currentImage]);
 
   // Small persistent nav bar so people don't lose track of where they are
   // once they've scrolled past the hero - fades in past it, click to jump
@@ -393,9 +402,16 @@ function App() {
               </div>
             </div>
             <div className="image-container">
+              {!imageLoaded && (
+                <div className="image-loading">
+                  <FontAwesomeIcon icon={faSpinner} spin />
+                </div>
+              )}
               <img
-                src={arrInfo[curLoc].image}
+                src={currentImage}
                 alt="pic"
+                className={imageLoaded ? "loaded" : ""}
+                onLoad={() => setImageLoaded(true)}
               />
             </div>
             <div className="pop-up-container">

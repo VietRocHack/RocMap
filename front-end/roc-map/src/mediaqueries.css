@@ -215,43 +215,12 @@
 }
 
 /* DESKTOP / WIDE-SCREEN — this app was built mobile-first (the block above
-   handles <=1200px); these rules make better use of the extra width on
-   tablets-landscape and up instead of leaving it as one narrow stretched
-   mobile column. */
-@media (min-width: 900px) {
-  .result {
-    display: grid;
-    grid-template-columns: minmax(320px, 440px) 1fr;
-    grid-template-areas:
-      "route route"
-      "image info";
-    align-items: start;
-    column-gap: 40px;
-  }
-
-  .route-container {
-    grid-area: route;
-  }
-
-  .image-container {
-    grid-area: image;
-    max-width: 100%;
-    margin: 0;
-  }
-
-  .pop-up-container {
-    grid-area: info;
-  }
-
-  /* .info's base 50%-width rule assumed the old unstyled >1200px layout
-     where pop-up-container spanned the full page; in the grid layout above
-     it's confined to one column, so 50% is too cramped for three columns
-     of numbers - match the same 100% mobile already uses. */
-  .info {
-    width: 100%;
-  }
-
-  .button-find-another {
-    width: auto;
-  }
-}
+   handles <=1200px). A two-column grid was tried here for the result
+   screen and looked wrong in practice: .route kept its own max-width:600px
+   while the image+info grid columns spanned much wider, so the route bar
+   floated above, narrower than and misaligned with the card below it -
+   three disconnected-looking pieces instead of one card. Reverted to the
+   same single centered column mobile already uses (see the unified
+   max-width on .route/.image-container/.pop-up-container in App.css) -
+   it just gets breathing room on the sides on a wide screen instead of
+   stretching sideways. */

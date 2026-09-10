@@ -213,7 +213,7 @@ input[type="text"] {
 .info {
   display: flex;
   justify-content: space-between;
-  width: 50%; 
+  width: 100%;
 }
 
 .info-left,
@@ -259,6 +259,9 @@ input[type="text"] {
 	color: black;
 	position: relative;
 	z-index: 1;
+	max-width: 500px;
+	margin: 0 auto;
+	box-sizing: border-box;
 }
 
 .info-title {
@@ -296,23 +299,42 @@ input[type="text"] {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 60vh; 
-  max-width: 400px;
+  height: 60vh;
+  max-width: 500px;
   margin: 0 auto;
-  background-color: #a7a6a6; 
+  background-color: #a7a6a6;
 	overflow: auto;
-  border: 1px solid #ccc; 
-  border-radius: 15px; 
+  border: 1px solid #ccc;
+  border-radius: 15px;
 	position: relative;
+	box-sizing: border-box;
 }
 
 /* Style the image (adjust as needed) */
 .image-container img {
-  width: 100%; 
+  width: 100%;
 	height: auto;
 	/* position: absolute; */
 	top: 0;
 	left: 0;
+	opacity: 0;
+	transition: opacity 250ms ease;
+}
+
+.image-container img.loaded {
+	opacity: 1;
+}
+
+.image-loading {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 28px;
 }
 
 /*____BUTTON____ */
@@ -391,9 +413,10 @@ button:disabled {
 
 .route {
 	width: 100%;
-	max-width: 600px;
+	max-width: 500px;
 	background-color: white;
 	display: flex;
+	box-sizing: border-box;
 }
 
 .route-container {
