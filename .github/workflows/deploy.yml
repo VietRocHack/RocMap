@@ -1,0 +1,68 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  PROJECT_ID: vietrochack-lab
+  REGION: us-central1
+  FUNCTION_NAME: rocmap-findDirection
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # required for Workload Identity Federation — no stored key
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ vars.WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
+
+      - uses: google-github-actions/setup-gcloud@v2
+
+      - name: Deploy backend to Cloud Functions (gen2)
+        run: |
+          gcloud functions deploy "$FUNCTION_NAME" \
+            --gen2 \
+            --runtime=python312 \
+            --region="$REGION" \
+            --source=backend \
+            --entry-point=find_direction \
+            --trigger-http \
+            --allow-unauthenticated \
+            --project="$PROJECT_ID"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: front-end/roc-map/package-lock.json
+
+      - name: Install and build frontend
+        working-directory: front-end/roc-map
+        run: |
+          npm ci
+          npm run build
+        env:
+          CI: false
+
+      - name: Deploy frontend to Firebase Hosting
+        run: |
+          npx firebase-tools deploy --only hosting:rocmap \
+            --project "$PROJECT_ID" --non-interactive
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ steps.auth.outputs.credentials_file_path }}
+
+      - name: Summary
+        run: |
+          echo "### Deployed" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Backend function: $FUNCTION_NAME ($REGION)" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Frontend: https://rocmap.vietrochack.com" >> "$GITHUB_STEP_SUMMARY"
