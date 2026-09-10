@@ -280,6 +280,10 @@ input[type="text"] {
 .button-find-another {
 	color: grey;
 	border: grey 0.13rem solid;
+	width: 100%;
+	box-sizing: border-box;
+	display: block;
+	margin: 0 auto;
 }
 
 /*___DETAILS___*/
